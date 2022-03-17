@@ -8,7 +8,7 @@ awawawawawawawaawawe
 
 |                  |                 |
 | ---------------- | --------------- |
-| Candidate Name   | Generic Student |
+| Candidate Name   | Max Bramworth   |
 | Candidate Number | 9999            |
 | Centre Name      | Marling School  |
 | Centre Number    | 57037           |
