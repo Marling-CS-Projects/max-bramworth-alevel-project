@@ -1,6 +1,6 @@
 # Table of contents
 
-* [swaws](README.md)
+* [Max Bramworth: A Level Project](README.md)
 
 ## 1 Analysis <a href="#analysis" id="analysis"></a>
 
