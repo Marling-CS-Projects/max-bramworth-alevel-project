@@ -110,7 +110,7 @@ scene("main", () => {
 go("main");
 ```
 
-Setting up some more work for future me now. GetBearingFromPlayer() will (surprise surprise) get the bearing of anything from the player using its 3D co-ordinates. GBFP only uses the xy plane and I will use the GetHeightBearing() function for determining vertical angle. And finally I added Pythagoras as a theorem&#x20;
+Setting up some more work for future me now. GetBearingFromPlayer() will (surprise surprise) get the bearing of anything from the player using its 3D co-ordinates. GBFP only uses the xy plane and I will use the GetHeightBearing() function for determining vertical angle. And finally I added Pythagoras' theorem for getting the distance between to points or the length of a vector.
 
 ```
 function GetBearingFromPlayer(obj){
@@ -154,7 +154,29 @@ function calcDistance(startingx, startingy, endingx, endingy){
 }
 ```
 
+Now for the 'real' work. The tag "obj" will be applied to any thing that needs to be rendered by the 3D camera. onUpdate() will run every frame for every object with a set tag, in this case "obj", and will run code that transforms its angle from the direction the player is looking in and its angle above/below the player to a point on the screen and will turn its distance into its scale so that further objects are smaller.
 
+```
+onUpdate("obj", (obj) => {
+  // get the bearing and turn it into the angle from the view line
+  let bearFromPLR = GetBearingFromPlayer(obj);
+  // subtract the rotation from it to get the angle
+  bearFromPLR -= PlayerRot;
+  // now see if we're measuring the reflex angle insted of the smaller one
+  if (Math.abs(bearFromPLR) > Math.abs(bearFromPLR + 360)){
+    bearFromPLR += 360; // change if we are (result must be negative if such is the case)
+  }
+  // now the same with height but its much simpler
+  let heightAngle = GetHeightBearing(obj);
+  // aFV / PLAYERFOV ranges from -1 to 1, multiply by half the width to range across the width of the screen and then center on the middle
+  obj.pos = vec2(((bearFromPLR / PLAYERFOV) * SCREEN_WIDTH * 0.5) + (SCREEN_WIDTH * 0.5), ((heightAngle / PLAYERFOV) * SCREEN_HEIGHT * 0.5) + (SCREEN_HEIGHT * 0.5));
+  //obj.pos = vec2((angleFromView / PLAYERFOV) + (SCREEN_WIDTH * 0.5), SCREEN_HEIGHT * 0.5);
+  const distSize = 1 / (calcDistance(obj.position.x, obj.position.y, PlayerPos.x, PlayerPos.y)); // scale size with distance to player
+  obj.scale = vec2(distSize, distSize);
+})
+```
+
+![This is what victory looks like](<../.gitbook/assets/image (1).png>)
 
 ```
 // Some code
