@@ -105,6 +105,8 @@ scene("main", () => {
   ], "obj");
 
   gravity(0); // stop gravity from interfering
+  
+  
 })
 
 go("main");
@@ -181,6 +183,25 @@ onUpdate("obj", (obj) => {
 ```
 // Some code
 ```
+
+Finally I'm adding movement to control where the camera is and where it is looking. W/A/S/D keeps your hands nicely spread apart which is more comfortable for the player. Kaboom's inbuilt onKeyDown() triggers every frame so long as the key it references is down so it makes sense to use it for movement controls. I also use the function dt(), delta time, which records the time since the last frame, multiplying the change in a value that increases every fame by a consistent amount by delta time will mean it increases in real time, independent of lag spikes.
+
+```
+onKeyDown("a", () => {
+ PlayerPos.x += -PlayerSpeed * dt();
+})
+onKeyDown("d", () => {
+ PlayerPos.x += PlayerSpeed * dt();
+})
+onKeyDown("s", () => {
+ PlayerPos.y += -PlayerSpeed * dt();
+})
+onKeyDown("w", () => {
+ PlayerPos.y += PlayerSpeed * dt();
+})
+```
+
+However, this code has an issue, when the camera is turned the keys will not change their direction so pressing w will no longer make you go forwards. The fix is fairly simple however was we can find take the bearing of the player (known)
 
 ### Challenges
 
