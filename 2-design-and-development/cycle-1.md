@@ -261,6 +261,32 @@ However, this code has an issue, when the camera is turned the keys will not cha
   })
 ```
 
+Rotating is super simple, just increase or decrease the PlayerRot variable. Uses q and e to turn or uses the x component in the change in mouse position.
+
+```
+  onMouseMove(() => {
+    PlayerRot += mouseDeltaPos().x * PlayerRotSpeed; // constant x mouse movement, delta time doesnt need to be useed here because of the nature of the mouse
+    if (PlayerRot > 360){ // the code only works assuming that the player's angle is between 0-360 therefore we have 
+      PlayerRot -= 360;   // to reset it on the frame it crosses over (kaboom runs 60fps nobody will notice one weird frame)
+    } else if (PlayerRot < 0){ 
+      PlayerRot += 360;
+    }
+  })
+
+  onKeyDown("q", () => {
+    PlayerRot += -PlayerRotSpeed * dt(); // increase rotation by constant x delta time bc we aren't lego island
+    if (PlayerRot < 0){ // and the set it back jazz
+      PlayerRot += 360;  
+    }
+  })
+  onKeyDown("e", () => {
+    PlayerRot += PlayerRotSpeed * dt();
+    if (PlayerRot > 360){ 
+      PlayerRot -= 360;   
+    }
+  })
+```
+
 ### Challenges
 
 Description of challenges
