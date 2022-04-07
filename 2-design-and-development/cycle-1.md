@@ -106,7 +106,28 @@ scene("main", () => {
 
   gravity(0); // stop gravity from interfering
   
+  for (let i = -1; i < 2; i++){ // creates a 3x3 grid of beans with random heights
+    for (let j = -1; j < 2; j++) {
+      makeBean(i, j, rand(2) - 1);
+    }
+  }
   
+  function makeBean(xpos, ypos, zpos){
+    const bean = add([
+      sprite("bean"),
+      pos(0, 0),
+      body(),
+      area(),
+      scale(1),
+      rotate(0),
+      origin("center"),
+      "obj",
+      {
+        position: vec2(xpos, ypos),
+        zpos: zpos,
+      }
+    ])
+  }
 })
 
 go("main");
@@ -159,6 +180,19 @@ function calcDistance(startingx, startingy, endingx, endingy){
 Now for the 'real' work. The tag "obj" will be applied to any thing that needs to be rendered by the 3D camera. onUpdate() will run every frame for every object with a set tag, in this case "obj", and will run code that transforms its angle from the direction the player is looking in and its angle above/below the player to a point on the screen and will turn its distance into its scale so that further objects are smaller.
 
 ```
+let PlayerPos = vec2(0, 0);
+let PlayerZ = 0;
+let PlayerRot = 0;
+let LookVec = vec2();
+let SideVec = vec2();
+  
+const PlayerSpeed = 2;
+const PLAYERFOV = 45;
+const PlayerRotSpeed = 9;
+const RenderDist = 0.1;
+```
+
+```
 onUpdate("obj", (obj) => {
   // get the bearing and turn it into the angle from the view line
   let bearFromPLR = GetBearingFromPlayer(obj);
@@ -180,10 +214,6 @@ onUpdate("obj", (obj) => {
 
 ![This is what victory looks like](<../.gitbook/assets/image (1).png>)
 
-```
-// Some code
-```
-
 Finally I'm adding movement to control where the camera is and where it is looking. W/A/S/D keeps your hands nicely spread apart which is more comfortable for the player. Kaboom's inbuilt onKeyDown() triggers every frame so long as the key it references is down so it makes sense to use it for movement controls. I also use the function dt(), delta time, which records the time since the last frame, multiplying the change in a value that increases every fame by a consistent amount by delta time will mean it increases in real time, independent of lag spikes.
 
 ```
@@ -201,7 +231,35 @@ onKeyDown("w", () => {
 })
 ```
 
-However, this code has an issue, when the camera is turned the keys will not change their direction so pressing w will no longer make you go forwards. The fix is fairly simple however was we can find take the bearing of the player (known)
+However, this code has an issue, when the camera is turned the keys will not change their direction so pressing w will no longer make you go forwards. The fix is fairly simple however was we can find take the bearing of the player (known) and turn it into a vector to use for moving along.
+
+```
+  onUpdate(() => { // void update is basically just player stuff
+    // set the player's look vector to be whatever it is, we only need PlayerRot for this (works in all quadrants wtf??)
+    // do be careful tho because the radians are rearing their ugly head again again
+    LookVec = vec2(Math.sin(PlayerRot * DEGTORAD), Math.cos(PlayerRot * DEGTORAD)); // and it comes pre-normalised too (we're calling the hypotenuse 1)
+    SideVec = vec2(Math.sin((PlayerRot + 90) * DEGTORAD), Math.cos((PlayerRot + 90) * DEGTORAD)); // lil' trick for strafing from my unity days
+  })
+  //Movement Keys:
+  onKeyDown("a", () => {
+    // whatever the vector for strafing is, move along it (negatively)
+    // apparently kaboom's vec2.add() doesn't work lol
+    PlayerPos.x += SideVec.x * -PlayerSpeed * dt();
+    PlayerPos.y += SideVec.y * -PlayerSpeed * dt();
+  })
+  onKeyDown("d", () => {
+    PlayerPos.x += SideVec.x * PlayerSpeed * dt();
+    PlayerPos.y += SideVec.y * PlayerSpeed * dt();
+  })
+  onKeyDown("w", () => {
+    PlayerPos.x += LookVec.x * PlayerSpeed * dt();
+    PlayerPos.y += LookVec.y * PlayerSpeed * dt();
+  })
+  onKeyDown("s", () => {
+    PlayerPos.x += LookVec.x * -PlayerSpeed * dt();
+    PlayerPos.y += LookVec.y * -PlayerSpeed * dt();
+  })
+```
 
 ### Challenges
 
