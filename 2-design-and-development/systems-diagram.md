@@ -12,25 +12,28 @@ Usability is an important aspect to my game as I want it to be accessible to all
 
 ### Effective
 
-Users can achieve the goal with completeness and accuracy. To do this, I will provide clear direction within the world itself, using tricks such as light, framing and colour highlighting to guide the player in the forwards direction. I will also use narrative clues to tell the player what their larger overarching goals / direction to go in is.
+Players can achieve the goal with completeness and accuracy. To do this, I will provide clear direction within the world itself, using tricks such as light, framing and colour highlighting to guide the player in the forwards direction. I will also use narrative clues to tell the player what their larger overarching goals / direction to go in is.
 
 #### Aims
 
-* Create a clear goal to reach to determine the end of a level
-* Create a clear goal for any multiplayer modes
+* Create a clear path for the Player to follow
+* Make the end goal of a section (get this item, go to this place) clear and simple
+* Use narrative reasons to drive the player forward
 
 ### Efficiency
 
-The speed and accuracy to which a user can complete the goal. To do this, I will create a menu system which is easy to navigate through in order for to find what you are looking for. The information which is more important can be found with less clicks.
+The game should not waste the Player's time. Menus, in my case: the inventory, pause and title, should be fast to navigate with keyboard or mouse and laid out so that they read well and present the player with all the information they need. More important aspects must be faster to access.
 
 #### Aims
 
-* Create a menu system that is quick and easy to navigate through
-* Create a controls system that isn't too complicated but allows the player to do multiple actions
+* Create a menu and inventory system that is quick and easy to navigate through
+* Create a controls system that isn't too complicated but still allows for the depth in gameplay I want to achieve
 
 ### Engaging
 
 The solution is engaging for the user to use. To do this, I will create 5 levels and an online multiplayer mode to keep the players engaged and allow them to have fun while playing the game. Using vector style art will also make the game nicer to look at than blocks, so will draw more people in, keeping them engaged.
+
+I want my game to be engaging for the Player. I will need the world to be sufficiently sized and be well paced with a mix of platforming and&#x20;
 
 #### Aims
 
