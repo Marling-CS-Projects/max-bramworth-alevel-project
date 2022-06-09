@@ -31,15 +31,13 @@ The game should not waste the Player's time. Menus, in my case: the inventory, p
 
 ### Engaging
 
-The solution is engaging for the user to use. To do this, I will create 5 levels and an online multiplayer mode to keep the players engaged and allow them to have fun while playing the game. Using vector style art will also make the game nicer to look at than blocks, so will draw more people in, keeping them engaged.
-
-I want my game to be engaging for the Player. I will need the world to be sufficiently sized and be well paced with a mix of platforming and&#x20;
+I want my game to be engaging for the Player. I will need the world to be sufficiently sized and be well paced with a mix of platforming and combat sections. I will also try to include some sections that feature elements from platforming and combat in order to mix the two styles. I will also make the enemies and world have an interesting design to make them look good and create an atmosphere which make the player want to keep playing.
 
 #### Aims
 
-* Create a series of levels to work through
-* Create a multiplayer mode to play
-* Incorporate a style of game art the suits the game
+* Create a continuous world map for the player to progress through&#x20;
+* Have parts of it be platforming based, other parts combat based and some parts mixed.
+* Use world and enemy design to create a tense atmosphere
 
 ### Error Tolerant
 
@@ -52,12 +50,12 @@ The solution should have as few errors as possible and if one does occur, it sho
 
 ### Easy To Learn
 
-The solution should be easy to use and not be over complicated. To do this, I will create simple controls for the game. I will make sure that no more controls are added than are needed in order to keep them as simple as possible for the players.
+My game should be intuitive to control, despite its variety of controls. The Player should be able to pick up the game after not having played it for months and be able to still keep being able to control it with ease. I will only have the controls that my game needs in order to have the depth of gameplay I want.
 
 #### Aims
 
 * Create a list of controls for the game
-* Create an in-level guide that helps players learn how to play the game
+* Create an in-game tutorial that helps players learn how to play the game by slowly introducing elements as they master previous ones / become relevant. e.g. you will only learn how to jump once you reach the first platforming part
 
 ## Pseudocode for the Game
 
