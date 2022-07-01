@@ -59,53 +59,87 @@ My game should be intuitive to control, despite its variety of controls. The Pla
 
 ## Pseudocode for the Game
 
-### Pseudocode for game
+### Pseudocode for main game script
 
-This is the basic layout of the object to store the details of the game. This will be what is rendered as it will inherit all important code for the scenes.
+This is the main game script that will do all of the work in order to make the game function. The script will rely on multiple other scripts however that will all store data about levels or enemies. It will be called to run by the menu script as the game should not immediately start playing.
 
 ```
-object Game
-    type: Phaser
-    parent: id of HTML element
-    width: width
-    height: height
-    physics: set up for physics
-    scenes: add all menus, levels and other scenes
-end object
+imports:
+    THREE.js
+    GLTF Loader
+    Maths
+    Class types
+    Enemies, items and models
+    Levels
+    input system
+    save system
+end imports
+    
+create rendering based objects
+create the webgl renderer
+add player
+load appropriate part of world for the player's save file
 
-render Game to HTML web page
+render loop:
+    respond to the input system
+    apply gravity
+    resolve colisions
+    move camera to where it should be
+    render scene
+end render loop
+
+start rendering
 ```
 
 ### Pseudocode for a level
 
-This shows the basic layout of code for a Phaser scene. It shows where each task will be executed.
+The basic layout I will use to create a level. Objects within levels will belong to one of three classes: walls, cuboids with textures and perfect hitboxes; models, 3D models I have created in bender which can be more artistically expressive and detailed than walls but have more approximate hitboxes and combatants, enemies mainly but also the player (who is a special exception to may combatant rules however). Structure classes will contain all of the walls, models and combatants of an area. They exist to load in and out the objects they contain as the player reaches triggers in the game world in order to save memory so the game does not have to check collision against objects too far away.
 
 ```
-class Level extends Phaser Scene
+class wall:
+    setup wall's transform
+    setup the wall's collision protocol
+    apply a material to its faces
+    
+    exist()
+        add to the scene
+        create bounding box
+        add bounding box to the list of objects player can collide with
 
-    procedure preload
-        load all sprites and music
-    end procedure
+class model:
+    setup model's transform
+    setup the model's collision protocol
     
-    procedure create
-        start music
-        draw background
-        create players
-        create platforms
-        create puzzle elements
-        create enemies
-        create obstacles
-        create finishing position
-        create key bindings
-    end procedure
+    exist()
+        add to the scene
+        create bounding box
+        add bounding box to the list of objects player can collide with
+        
+class combatant:
+    setup default transform
+    setup combat relevant stats
+    add attacks
     
-    procedure update
-        handle key presses
-        move player
-        move interactable objects
-        update animations
-        check if player at exit
-    end procedure
-    
-end class
+    checkPlayerVisibility()
+        raycast to player
+        check if obstructed
+        check length
+        if both of the above pass, return true
+        
+    check range()
+        check distance to player, return true if lower than range variable
+        
+    attack()
+         decide which attack should be used
+         run the appropriate function of the attack
+         
+ class attack:
+     setup hitbox details
+     setup combat stats
+     
+     sweep()
+     stab()
+     bash()
 ```
+
+###

@@ -304,5 +304,3 @@ Evidence for testing
 | 3    | Move forwards and back | The camera's position moves. The beans in the centre of frame will increase their size moderately but will move their screen position very little. Beans on the sides will grow and move off the sides of the screen very quickly. Further away beans will be less affected | As expected           | Pass      |
 | 4    | Strafe sideways        | The beans mainly move side to side with little growth/shrinkage except those on the edges. Further away beans move less due to the parallax effect.                                                                                                                         | As expected           | Pass      |
 | 5    | Move after turning     | The direction the camera moves in changes so that the direction it is looking in is always forwards.                                                                                                                                                                        | As expected           | Pass      |
-
-### Evidence
