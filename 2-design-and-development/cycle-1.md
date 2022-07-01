@@ -297,9 +297,12 @@ Evidence for testing
 
 ### Tests
 
-| Test | Instructions  | What I expect     | What actually happens | Pass/Fail |
-| ---- | ------------- | ----------------- | --------------------- | --------- |
-| 1    | Run code      | Thing happens     | As expected           | Pass      |
-| 2    | Press buttons | Something happens | As expected           | Pass      |
+| Test | Instructions           | What I expect                                                                                                                                                                                                                                                               | What actually happens | Pass/Fail |
+| ---- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | --------- |
+| 1    | Run code               | The 'beans' appear in their formation, drawn to the screen in positions that represent a view into a 3D world.                                                                                                                                                              | As expected           | Pass      |
+| 2    | Move mouse             | The camera rotates, causing the beans to appear to move side-to-side. They will also grow and shrink as they approach the sides, as the camera is perspective rather than orthographic.                                                                                     | As expected           | Pass      |
+| 3    | Move forwards and back | The camera's position moves. The beans in the centre of frame will increase their size moderately but will move their screen position very little. Beans on the sides will grow and move off the sides of the screen very quickly. Further away beans will be less affected | As expected           | Pass      |
+| 4    | Strafe sideways        | The beans mainly move side to side with little growth/shrinkage except those on the edges. Further away beans move less due to the parallax effect.                                                                                                                         | As expected           | Pass      |
+| 5    | Move after turning     | The direction the camera moves in changes so that the direction it is looking in is always forwards.                                                                                                                                                                        | As expected           | Pass      |
 
 ### Evidence
