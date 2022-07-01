@@ -1,4 +1,4 @@
-# 2.2.1 Cycle 0 - Attempting to use Kaboom.js as a 3D engine
+# 2.2.0 Cycle 0 - Attempting to use Kaboom.js as a 3D engine
 
 ## Design
 
@@ -24,14 +24,6 @@ In this cycle I will setup Kaboom.js and make sure I can locally host it. I will
 | pos       | Kaboom's inbuilt variable for an object's position, re-using this for position on screen                   |
 | position  | Vector2 storing the object's position in the plane perpendicular to gravitational acceleration (x y plane) |
 | zpos      | Stores the object's height parallel to gravitational acceleration (z axis)                                 |
-
-### Pseudocode
-
-```
-procedure do_something
-    
-end procedure
-```
 
 ## Development
 

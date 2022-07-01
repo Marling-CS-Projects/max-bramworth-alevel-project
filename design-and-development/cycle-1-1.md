@@ -25,17 +25,67 @@ THREE.js is very easy to initially set up and I will also be creating an example
 | cube          | The cube that the camera will render. Can have its transform altered by using cube.mesh, which accesses its object3D, containing its scale rotation and position |
 | sun           | The light of the scene. Illuminates the cube on the nearest face which helps the brain the see the image as 3D                                                   |
 
-### Pseudocode
-
-```
-procedure do_something
-    
-end procedure
-```
-
 ## Development
 
 ### Outcome
+
+Firstly, I imported the 'Live Server' extension in VSCode to help me host it as I found that going to the lengths of using node.js was unnecessary.&#x20;
+
+![](<../.gitbook/assets/image (4).png>)
+
+Next I wrote my .html and .css files to contain the viewport which the game would be drawn onto. I then created my JavaScript file and imported THREE.js and the GLTFLoader. I ran into issues with importing the GLTFLoader and had to setup an import map in my .html file which fixed the problem.
+
+{% tabs %}
+{% tab title="index.html" %}
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Shaded Spirits</title>
+    <link href="./style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "./node_modules/three/build/three.module.js",
+        "GLTFLoader": "./node_modules/three/examples/jsm/loaders/GLTFLoader.js"
+      }
+    }
+    </script> 
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
+```
+{% endtab %}
+
+{% tab title="style.css" %}
+```
+html, body {
+	overflow: hidden;
+    user-select: none;
+    padding: 0;
+    margin: 0;
+}
+
+canvas {
+	width: 100%; 
+	height: 100%;
+	padding: 0;
+    outline:none;
+}
+```
+{% endtab %}
+
+{% tab title="script.js" %}
+```
+import * as THREE from "three";
+import { GLTFLoader } from "GLTFLoader";
+```
+{% endtab %}
+{% endtabs %}
 
 ### Challenges
 

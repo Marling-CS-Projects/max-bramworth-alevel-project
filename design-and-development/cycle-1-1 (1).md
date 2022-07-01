@@ -17,14 +17,6 @@
 | ------------- | --------------------- |
 | foo           | does something useful |
 
-### Pseudocode
-
-```
-procedure do_something
-    
-end procedure
-```
-
 ## Development
 
 ### Outcome
