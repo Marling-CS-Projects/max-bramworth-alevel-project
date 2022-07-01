@@ -91,7 +91,7 @@ end render loop
 start rendering
 ```
 
-### Pseudocode for a level
+### Pseudocode for the classes
 
 The basic layout I will use to create a level. Objects within levels will belong to one of three classes: walls, cuboids with textures and perfect hitboxes; models, 3D models I have created in bender which can be more artistically expressive and detailed than walls but have more approximate hitboxes and combatants, enemies mainly but also the player (who is a special exception to may combatant rules however). Structure classes will contain all of the walls, models and combatants of an area. They exist to load in and out the objects they contain as the player reaches triggers in the game world in order to save memory so the game does not have to check collision against objects too far away.
 
@@ -101,37 +101,24 @@ class wall:
     setup the wall's collision protocol
     apply a material to its faces
     
-    exist()
-        add to the scene
-        create bounding box
-        add bounding box to the list of objects player can collide with
+    add to scene()
 
 class model:
     setup model's transform
     setup the model's collision protocol
     
-    exist()
-        add to the scene
-        create bounding box
-        add bounding box to the list of objects player can collide with
-        
+    add to scene()
+
 class combatant:
     setup default transform
     setup combat relevant stats
     add attacks
     
     checkPlayerVisibility()
-        raycast to player
-        check if obstructed
-        check length
-        if both of the above pass, return true
         
     check range()
-        check distance to player, return true if lower than range variable
         
     attack()
-         decide which attack should be used
-         run the appropriate function of the attack
          
  class attack:
      setup hitbox details
@@ -142,4 +129,28 @@ class combatant:
      bash()
 ```
 
-###
+### Pseudocode for input system
+
+The input system that base JavaScript uses has the flaw that holding a key registers as one press and then a hold, with a gap between.
+
+![](<../.gitbook/assets/key press diagram.png>)
+
+The solution I used has individual variables for each key. The variables go on when the key is pressed down and goes off when it comes up. this circumvent the issue by getting the game to check these variables instead of the keys directly. This will also allow for easy key remapping.
+
+```
+add event listener for 'keyup':
+    switch keycode value:
+        change variable state for appropriate key to true
+
+add event listener for 'keydown':
+    switch keycode value:
+        change variable state for appropriate key to false
+
+add event listener for 'mouse move':
+    rotate the player by the amount moved side to side
+    move camera up and down by the amount moved up and down
+    
+add event listener for 'mouse click':
+    switch click type:
+        do appropriate action
+```
