@@ -17,6 +17,8 @@ Players can achieve the goal with completeness and accuracy. To do this, I will 
 #### Aims
 
 * Create a clear path for the Player to follow
+  * use lights, framing and colour highlights.
+  * also use in game structures to convey a direction to go in e.g. sign posts and paths
 * Make the end goal of a section (get this item, go to this place) clear and simple
 * Use narrative reasons to drive the player forward
 
@@ -27,6 +29,7 @@ The game should not waste the Player's time. Menus, in my case: the inventory, p
 #### Aims
 
 * Create a menu and inventory system that is quick and easy to navigate through
+  * allow menu to be keyboard navigable as game is heavily keyboard based
 * Create a controls system that isn't too complicated but still allows for the depth in gameplay I want to achieve
 
 ### Engaging
@@ -37,7 +40,9 @@ I want my game to be engaging for the Player. I will need the world to be suffic
 
 * Create a continuous world map for the player to progress through&#x20;
 * Have parts of it be platforming based, other parts combat based and some parts mixed.
+  * mountain environment lends itself well to have platforming in it
 * Use world and enemy design to create a tense atmosphere
+  * concealed enemy positions
 
 ### Error Tolerant
 
@@ -47,6 +52,7 @@ The solution should have as few errors as possible and if one does occur, it sho
 
 * The game doesn't crash
 * The game does not contain any bugs that damage the user experience
+* Frame rate is consistent&#x20;
 
 ### Easy To Learn
 
@@ -56,6 +62,8 @@ My game should be intuitive to control, despite its variety of controls. The Pla
 
 * Create a list of controls for the game
 * Create an in-game tutorial that helps players learn how to play the game by slowly introducing elements as they master previous ones / become relevant. e.g. you will only learn how to jump once you reach the first platforming part
+* Have item descriptions that can be accessed at any time to remind the player what items do
+* Use real life elements so the player can relate their real life experiences to the game, making it more intuitive
 
 ## Pseudocode for the Game
 
