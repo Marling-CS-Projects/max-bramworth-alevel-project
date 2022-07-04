@@ -4,15 +4,13 @@
 
 ### Objectives
 
-THREE.js is very easy to initially set up and I will also be creating an example scene and setting up some additional parts of THREE.js that I know I will need for the rest of the project. These parts will be the GLTFLoader which allows me to create 3D models in software such as blender, save them as files part of the GLTF family and import them into the game.
+THREE.js is very easy to initially set up and I will also be creating an example scene and setting up some additional parts of THREE.js that I know I will need for the rest of the project.
 
 * [x] Set up THREE
 * [x] Create an example scene consisting of:
   * [x] A rotating cube
   * [x] A light
   * [x] A perspective camera
-* [x] Setup the GLTFLoader
-* [x] Load a 3D model and alter its transform
 
 ### Usability Features
 
@@ -82,24 +80,85 @@ canvas {
 {% tab title="script.js" %}
 ```
 import * as THREE from "three";
-import { GLTFLoader } from "GLTFLoader";
 ```
 {% endtab %}
 {% endtabs %}
 
+I then wrote some sample code for the scene to render, featuring a rotating cube and a light source that causes different amounts of shading on the surfaces as the cube rotates. For this I had to first initialise the scene, which everything to be rendered would be placed in. The next most important part of rendering a scene is the camera and its renderer. I made the camera scale to match any window size so that the user can minimise the tab to not be full screen if that suits them better. Finally I needed to tell the camera to render the scene, so I used a repeating render() function that calls sixty times a second using the requestAnimationFrame() function that THREE.js uses.
+
+```
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(
+  60,
+  window.innerWidth / window.innerHeight,
+  1,
+  10000
+);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0xaaaaaa, 1);
+document.body.appendChild(renderer.domElement);
+
+function render() {
+  renderer.render(scene, camera);
+  requestAnimationFrame(render);
+}
+
+render();
+```
+
+![The camera is now rendering our rather boring scene](<../.gitbook/assets/image (3).png>)
+
+In order to fill in the scene, I added a cube. I made it a pleasant shade of turquoise and used a phong material in order for it to be able to be lit by the directional light, which I used the hex code of light from the sun for. To make sure that the camera was rendering at 60fps, I made the cube rotate on the spot.
+
+```
+const sun = new THREE.DirectionalLight(0xfdfbd3, 0.5);
+sun.position.set(-5, 3, 2);
+scene.add(sun);
+
+const cube = {
+  geometry: new THREE.BoxGeometry(1, 1, 1),
+  material: new THREE.MeshPhongMaterial({ color: 0x00ffff }) //phong allows for lighting
+};
+cube.mesh = new THREE.Mesh(cube.geometry, cube.material);
+scene.add(cube.mesh);
+
+let thePos = 0;
+function render() {
+  cube.mesh.rotation.y = Math.sin(thePos);
+  thePos += 1/60;
+  
+  renderer.render(scene, camera);
+  requestAnimationFrame(render);
+}
+
+render();
+```
+
+This code ran into an issue however, the screen was still empty. I soon realised that this was because the camera was inside the cube and the location of the near clipping planes meant that the cube was impossible to see therefore as none of its planes were inside the view frustrum. This was fixed by simply moving the camera backwards. I then used the lookAt function to make sure that the cube was in the centre of frame.
+
+```
+camera.position.set(0, 1, 5);
+camera.lookAt(cube.mesh.position);
+```
+
+![Full screen tab, large and letter shaped, works well as expected](<../.gitbook/assets/image (2).png>)
+
+![Very small tab, small and square shaped, still works](<../.gitbook/assets/image (6).png>)
+
 ### Challenges
 
-Description of challenges
+This section of the project was very straight forward to create as I had made many THREE.js projects before and this part was common between many of them. My only real issue was with the camera being inside of the cube so I should keep in mind how the position of the camera my produce unwanted views of out of bounds areas or prevent parts of a scene from being seen for the rest of the project.
 
 ## Testing
 
-Evidence for testing
-
 ### Tests
 
-| Test | Instructions  | What I expect     | What actually happens |
-| ---- | ------------- | ----------------- | --------------------- |
-| 1    | Run code      | Thing happens     | As expected           |
-| 2    | Press buttons | Something happens | As expected           |
+| Test | Instructions            | What I expect                                                                                                                   | What actually happens |
+| ---- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| 1    | Run code                | See the cube in the world, different faces coloured different shades of turquoise based on how they face the light.             | As expected           |
+| 2    | Run code and then wait. | Observe the cube's rotation on the spot change. It will accelerate and decelerate over time according to its sin wave function. | As expected           |
 
 ### Evidence
