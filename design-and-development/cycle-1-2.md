@@ -4,7 +4,7 @@
 
 ### Objectives
 
-In this cycle I will allow the player to move around, forwards, backwards and side to side.
+In this cycle I will create and input system that registers .allow the player to move around, forwards, backwards and side to side. Finally I will allow the player to rotate the camera all the way round left and right but clamp the movement up and down.
 
 * [x] Do a thing
 * [x] Do another thing
