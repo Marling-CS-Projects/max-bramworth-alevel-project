@@ -4,7 +4,7 @@
 
 ### Objectives
 
-\[describe the cycle]
+In this cycle I will allow the player to move around, forwards, backwards and side to side.
 
 * [x] Do a thing
 * [x] Do another thing
