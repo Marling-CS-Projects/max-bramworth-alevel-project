@@ -210,7 +210,9 @@ camera.position.set(
 camera.lookAt(playerModel.mesh);
 ```
 
-//video link to wasd moving without camera
+{% embed url="https://youtu.be/JWG6qITiX1o" %}
+Rather hard to see in the video due to the length of the platform but the player is able to manoeuvre in all four direction
+{% endembed %}
 
 Using the mouse move event listener allows the player to move the camera. To do this I increase / decrease the player model's y rotation (spinning on the spot) based on the x dimension of the vector returned by the "mousemove" event times a constant used to modify the sensitivity. I then move the camera's y position by the y dimension of the "mousemove" vector times the sensitivity constant.&#x20;
 
@@ -274,7 +276,9 @@ export function calcVectorPerpendicular(inpVector){
 {% endtab %}
 {% endtabs %}
 
-// video of player moving, now with turning
+{% embed url="https://youtu.be/GI6-HoMp5-Q" %}
+Perfectly working!
+{% endembed %}
 
 ### Challenges
 

@@ -1,4 +1,4 @@
-# 2.2.3 Cycle 3 - Collisions and jumping
+# 2.2.3 Cycle 3 - Collisions
 
 ## Design
 
@@ -107,6 +107,34 @@ render(){
     ...
 }
 ```
+
+Finally, to prevent the player from falling through walls, I will add a check to the render loop against every other bounding box and have it push the player on collision. Importantly, moving meshes with collision, namely the player, will need to update their bounding box every frame in order to be accurate. I will do this as the last procedure before checking collision otherwise some actions may not be taken into account by the collision system.
+
+```
+render(){
+  ...
+  playerBoundingBox.setFromObject(playerModel.mesh);
+  
+  coliables.forEach(colidable => {
+      if (playerBoundingBox.intersectsBox(colidable.boundingBox)){
+        if (colidable.isFloor){
+          grounded = true;
+        }
+        while(playerBoundingBox.intersectsBox(colidable.boundingBox)){
+          playerModel.mesh.position.x += colidable.ejectionDirection.x;
+          playerModel.mesh.position.y += colidable.ejectionDirection.y;
+          playerModel.mesh.position.z += colidable.ejectionDirection.z;
+          playerBoundingBox.setFromObject(playerModel.mesh);
+        }
+      }
+    });
+    ...
+  }
+```
+
+{% embed url="https://youtu.be/U0v4fYIcqqc" %}
+Proof that the player is colliding with the floor shown near the end
+{% endembed %}
 
 ### Challenges
 
