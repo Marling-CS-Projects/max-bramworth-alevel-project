@@ -4,25 +4,41 @@
 
 ### Objectives
 
-\[describe the cycle]
-
-* [x] Do a thing
-* [x] Do another thing
+* [x] Add a class for collidable walls
+* [x] Detect collisions between the player and these walls
+* [x] Respond to collisions to create the illusion of solid objects colliding
+* [x] allow the player to jump
 
 ### Usability Features
 
 ### Key Variables
 
-| Variable Name | Use                   |
-| ------------- | --------------------- |
-| foo           | does something useful |
+| Variable Name | Use                                                                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| wall          | A class containing the position, rotation and dimension of an ingame wall. From this a collision box is made and a direction to push the player on collision is made. |
+| grounded      | can the player jump or not?                                                                                                                                           |
+| colidables    | everything the player can collide with.                                                                                                                               |
+| gravity       | moves the player downwards                                                                                                                                            |
 
 ### Pseudocode
 
 ```
-procedure do_something
+create wall class:
+    setup its position, rotation, scale, ejeDirection and isFloor
     
-end procedure
+    exist():
+        add self to scene
+        create bounding box based off self
+        add boundingbox to list of gameObjects
+
+
+render:
+    for every boundingbox:
+        check if it intersects with the player
+        if it does, move the player along the direction that that box says to
+        move it in until it is no longer intersecting
+        
+    
 ```
 
 ## Development

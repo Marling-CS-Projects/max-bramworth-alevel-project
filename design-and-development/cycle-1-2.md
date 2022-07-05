@@ -190,55 +190,6 @@ Having the game recognise keyboard input is good but only means anything when th
 
 ```
 if (INPUTSYS.getKey("w")){
-    playerModel.mesh.position.z += moveSpeed;
-}
-if (INPUTSYS.getKey("s")){
-    playerModel.mesh.position.z -= moveSpeed;
-}
-if (INPUTSYS.getKey("a")){
-    playerModel.mesh.position.x += moveSpeed;
-}
-if (INPUTSYS.getKey("d")){
-    playerModel.mesh.position.x -= moveSpeed;
-}
-
-camera.position.set(
-    playerModel.mesh.position.x, 
-    playerModel.mesh.position.y + 1,
-    playerModel.mesh.position.z - 5
-);
-camera.lookAt(playerModel.mesh);
-```
-
-//video link to wasd moving without camera
-
-Using the mouse move event listener allows the player to move the camera. To do this I increase / decrease the player model's y rotation (spinning on the spot) based on the x dimension of the vector returned by the "mousemove" event times a constant used to modify the sensitivity. I then move the camera's y position by the y dimension of the "mousemove" vector times the sensitivity constant.&#x20;
-
-```
-import * as MATHS from "./maths.js";
-
-let PlayerFacing = new THREE.Vector3();
-let PlayerRight = new THREE.Vector3();
-
-document.addEventListener("mousemove", e => {
-  e.preventDefault();
-  playerModel.mesh.rotation.y += e.movementX * -0.006;
-  camHeight += e.movementY * 0.01;
-  camHeight = Math.max(camHeight, -0.75);
-  camHeight = Math.min(camHeight, 3);
-})
-```
-
-Finally I saved the vector containing the direction that the player is facing every frame which can be used to move the camera to the appropriate location and make movement relevant to the direction the camera is facing. Then I appropriately updated the keys so that w and s move using player forwards and a and d use player right and placed the camera behind the player using the negative of the player facing.
-
-{% tabs %}
-{% tab title="Main.js" %}
-```
-playerModel.mesh.getWorldDirection(PlayerFacing);
-PlayerFacing.normalize();
-PlayerRight = MATHS.calcVectorPerpendicular(PlayerFacing);
-
-if (INPUTSYS.getKey("w")){
     playerModel.mesh.position.z += PlayerFacing.z * moveSpeed;
     playerModel.mesh.position.x += PlayerFacing.x * moveSpeed;
 }
@@ -255,36 +206,30 @@ if (INPUTSYS.getKey("d")){
     playerModel.mesh.position.x -= PlayerRight.x * moveSpeed;
 }
 
-camera.position.x = playerModel.mesh.position.x - PlayerFacing.x * 5;
-camera.position.y = playerModel.mesh.position.y + camHeight;
-camera.position.z = playerModel.mesh.position.z - PlayerFacing.z * 5;
-camera.lookAt(new THREE.Vector3(playerModel.mesh.position.x, playerModel.mesh.position.y + 1, playerModel.mesh.position.z));
+camera.position.set(
+    playerModel.mesh.position.x, 
+    playerModel.mesh.position.y + 1,
+    playerModel.mesh.position.z - 5
+);
 ```
-{% endtab %}
 
-{% tab title="Maths.js" %}
-```
-import * as THREE from "./node_modules/three/build/three.module.js";
-  
-export function calcVectorPerpendicular(inpVector){
-  const vect = new THREE.Vector3(inpVector.z, inpVector.y, -inpVector.x);
-  return (vect);
-}
-```
-{% endtab %}
-{% endtabs %}
+//video link to wasd moving without camera
 
-// video of player moving, now with turning
+Using the mouse move event listener allows the player&#x20;
 
 ### Challenges
 
-I had some experience in 3D controls before from my cycle 0 attempt so I did not have many issues  with reproducing it in THREE. I did have some issues with helping the main JavaScript file communicate with the input file, which is what led me to landing on the getKey() solution.
+Description of challenges
 
 ## Testing
 
-| Test | Instructions                      | What I expect                                                    | What actually happens |
-| ---- | --------------------------------- | ---------------------------------------------------------------- | --------------------- |
-| 1    | Run code                          | Scene renders: a long grey catwalk and a red cuboid player model | As expected           |
-| 2    | Press W/A/S/D                     | The player moves around                                          | As expected           |
-| 3    | Move mouse                        | The camera rotates around the player                             | As expected           |
-| 4    | Press W/A/S/D after moving camera | Player moves in new direction they are facing                    | As expected           |
+Evidence for testing
+
+### Tests
+
+| Test | Instructions  | What I expect     | What actually happens |
+| ---- | ------------- | ----------------- | --------------------- |
+| 1    | Run code      | Thing happens     | As expected           |
+| 2    | Press buttons | Something happens | As expected           |
+
+### Evidence

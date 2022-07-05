@@ -4,10 +4,9 @@
 
 ### Objectives
 
-\[describe the cycle]
-
-* [x] Do a thing
-* [x] Do another thing
+* [x] Improve the walls I can add the the game world
+* [x] Add 'structures' - groups of walls that all load and deload together.
+* [x] Import 3D GLTF models
 
 ### Usability Features
 
