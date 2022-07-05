@@ -186,7 +186,7 @@ import * as INPUTSYS from "./input.js";
 
 ![my current debug key (e) showing up in the console](<../.gitbook/assets/image (5).png>)
 
-Having the game recognise keyboard input is good but only means anything when the input has a perceivable effect on the game instead of just a message in the console. To do this I added checks to the render() loop which would increase or decrease the player's x or z component if their respective key was currently down.
+Having the game recognise keyboard input is good but only means anything when the input has a perceivable effect on the game instead of just a message in the console. To do this I added checks to the render() loop which would increase or decrease the player's x or z component if their respective key was currently down. I also need to update the position of the camera to follow the player as they move around.
 
 ```
 if (INPUTSYS.getKey("w")){
@@ -205,9 +205,17 @@ if (INPUTSYS.getKey("d")){
     playerModel.mesh.position.z -= PlayerRight.z * moveSpeed;
     playerModel.mesh.position.x -= PlayerRight.x * moveSpeed;
 }
+
+camera.position.set(
+    playerModel.mesh.position.x, 
+    playerModel.mesh.position.y + 1,
+    playerModel.mesh.position.z - 5
+);
 ```
 
 //video link to wasd moving without camera
+
+Using the mouse move event listener allows the player&#x20;
 
 ### Challenges
 
