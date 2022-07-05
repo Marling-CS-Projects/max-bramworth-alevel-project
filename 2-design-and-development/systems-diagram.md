@@ -2,7 +2,7 @@
 
 ## Systems Diagram
 
-![The diagram of all the systems and features that need to be present](<../.gitbook/assets/image (5) (1).png>)
+![The diagram of all the systems and features that need to be present](<../.gitbook/assets/image (5) (1) (1).png>)
 
 This diagram shows the different parts of the game that I will focus on creating. I have split each section into smaller sub-sections. Throughout the development stage, I will pick one or two of these sections to focus on at a time to gradually build up and piece together the game. I have broken the project down this way as it roughly corresponds to the success criteria. Certain sub-sections within a section will need other sections to be made before they can be started on, these are indicated by an arrow leading from the required sub-section.&#x20;
 

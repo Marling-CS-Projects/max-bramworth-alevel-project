@@ -7,9 +7,6 @@
 * [x] Add a class for collidable walls
 * [x] Detect collisions between the player and these walls
 * [x] Respond to collisions to create the illusion of solid objects colliding
-* [x] allow the player to jump
-
-### Usability Features
 
 ### Key Variables
 
@@ -49,7 +46,7 @@ Creating a whole game world using just code blocks that look like this would tak
 ```
 const cube = {
   geometry: new THREE.BoxGeometry(1, 1, 1),
-  material: new THREE.MeshPhongMaterial({ color: 0x00ffff }) //phong allows for lighting
+  material: new THREE.MeshPhongMaterial({ color: 0x00ffff }),
 };
 cube.mesh = new THREE.Mesh(cube.geometry, cube.material);
 scene.add(cube.mesh);
@@ -82,6 +79,32 @@ class wall {
 
     coliables.push(this);
   }
+}
+```
+
+A Box3 is a THREE.js data type that is defined by two points in global space, min and max respectively. From these two points, THREE works out all of the rest of the box's dimensions. Manually figuring these out myself wouldn't be too hard but as THREE has the setFromObject function to do that for me anyway, I use that instead. The existify function was originally just part of the constructor but I soon realised I wanted control over when a wall enters the scene and created a separate function for it.
+
+Now that we have the means to create a proper wall, I will create one in the scene now to make sure the class works
+
+```
+const the_ground = new wall(new THREE.Vector3(0, -3.25, 0), new THREE.Vector3(0, 0, 0), new THREE.Vector3(15, 0.5, 20), new THREE.Vector3(0, 0.02, 0), true);
+the_ground.existify();
+```
+
+![We have now successfully done nothing that we couldn't already do, lets fix that](<../.gitbook/assets/image (5).png>)
+
+Although its nice to have working, it is ultimately pointless. Firstly, we will need to give the player a hitbox of their own so that they can collide. This is pretty much exactly like the wall but we won't add it to the collidables list, since when would we care if the player was colliding with themselves? Next I will need to add some gravity, although I could just use a vertical wall instead of a floor to test this, I will need gravity for the end project anyway and implementing it now makes sense.
+
+```
+let playerBoundingBox = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+playerBoundingBox.setFromObject(playerModel.mesh);
+
+let gravity = -0.1;
+
+render(){
+    ...
+    playerModel.mesh.position.y += gravity;
+    ...
 }
 ```
 
