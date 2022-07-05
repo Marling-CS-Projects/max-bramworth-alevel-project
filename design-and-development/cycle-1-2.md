@@ -6,6 +6,7 @@
 
 In this cycle I will create and input system that registers inputs in a way that is better than the default JavaScript key detections and also allows for full re-mapping. Then I will create the controls to move around, forwards, backwards and side to side. Finally I will allow the player to rotate the camera all the way round left and right but clamp the movement up and down.
 
+* [x] Create and add the player to the scene
 * [x] Create a set of variables that track which keys are down
 * [x] Track mouse movements and clicks
 * [x] Assign the keys to actions
@@ -16,21 +17,197 @@ In this cycle I will create and input system that registers inputs in a way that
 
 ### Key Variables
 
-| Variable Name | Use |
-| ------------- | --- |
-|               |     |
+| Variable Name      | Use                                                      |
+| ------------------ | -------------------------------------------------------- |
+| the 'xDown' series | multiple variables that track which keys are up and down |
+| playermodel        | The player                                               |
+| playerFacing       | The direction the player is looking                      |
+| playerRight        | The direction to the player's right                      |
 
 ### Pseudocode
 
+{% tabs %}
+{% tab title="Main.js" %}
 ```
-procedure do_something
+import input.js
+
+create player
+add player to scene
+
+render loop:
+    Get playerDirection from the player's relative z
+    work out playerRight from player Direction
     
-end procedure
+    if pressing key using input.js's getKey
+        go in the direction of that key, relative to the camera
 ```
+{% endtab %}
+
+{% tab title="Input.js" %}
+```
+let variables for each gameplay relevant key
+
+on key down
+    set that key's variable to true
+    
+on key down
+    set that key's variable to false
+    
+export function getKey(named key)
+    return the value of the variable assigned to the named key
+```
+{% endtab %}
+{% endtabs %}
 
 ## Development
 
 ### Outcome
+
+I started this cycle with the player. I created it as an object named playerModel and placed it in the scene. I then adjusted the camera so that it was an appropriate distance from the player, allowing the user to see clearly the player model but also to be able to take in lots of the environment and have a wide field of view. I also converted the base scene I made last cycle into a 'floor' to better contextualise the movements of the player without making the map complicated.
+
+```
+const playerModel = {
+    geometry: new THREE.BoxGeometry(1, 1, 1),
+    material: new THREE.MeshBasicMaterial( 0xff0000 ),
+};
+playerModel.mesh = new THREE.Mesh(playerModel.geometry, playerModel.material);
+playerModel.mesh.scale.set(1, 2, 1);
+scene.add(playerModel.mesh);
+
+const floor = {
+    geometry: new THREE.BoxGeometry(1, 1, 1),
+    material: new THREE.MeshBasicMaterial( 0xaaaaaa ),
+};
+floor.mesh = new THREE.Mesh(floor.geometry, floor.material);
+floor.mesh.scale.set(10, 5, 40);
+scene.add(floor.mesh);
+```
+
+![](<../.gitbook/assets/image (4).png>)
+
+The controls use a separate file which checks keyboard inputs over the renderer window. That file then exports a function which allows the main file to ask the input file if a particular key is currently being pressed. I then also have to import the file into the main script so that it can use it.
+
+{% tabs %}
+{% tab title="Input.js" %}
+```
+let wDown = false;
+let aDown = false;
+let sDown = false;
+let dDown = false;
+let leftShiftDown = false;
+let eDown = false;
+let spaceDown = false;
+
+window.addEventListener('keyup', (e) => {
+    switch (e.keyCode){
+      case 87: // w
+        wDown = false;
+        break;
+      case 65: // a
+        aDown = false;
+        break;
+      case 83: // s
+        sDown = false;
+        break;
+      case 68: // d
+        dDown = false;
+        break;
+      case 16: // q
+        leftShiftDown = false;
+        break;
+      case 69: // e
+        console.log("working! :D");
+        break;
+      case 32: // space
+        spaceDown = false;
+        break;
+    }
+});
+window.addEventListener('keydown', (e) => {
+  switch (e.keyCode){
+    case 87: // w
+      wDown = true;
+      break;
+    case 65: // a
+      aDown = true;
+      break;
+    case 83: // s
+      sDown = true;
+      break;
+    case 68: // d
+      dDown = true;
+      break;
+    case 16: // leftshift
+      leftShiftDown = true;
+      break;
+    case 69: // e
+      eDown = true;
+      break;
+    case 32: // space
+      spaceDown = true;
+      break;
+  }
+});
+
+export function getKey(key){
+    switch(key){
+        case "w":
+            return(wDown);
+            break;
+        case "a":
+            return(aDown);
+            break;
+        case "s":
+            return(sDown);
+            break;
+        case "d":
+            return(dDown);
+            break;
+        case "space":
+            return(spaceDown);
+            break;
+        case "e":
+            return(eDown);
+            break;
+        case "lShift":
+            return(leftShiftDown);
+            break;
+    }
+}
+```
+{% endtab %}
+
+{% tab title="Script.js" %}
+```
+import * as INPUTSYS from "./input.js";
+```
+{% endtab %}
+{% endtabs %}
+
+![my current debug key (e) showing up in the console](<../.gitbook/assets/image (5).png>)
+
+Having the game recognise keyboard input is good but only means anything when the input has a perceivable effect on the game instead of just a message in the console. To do this I added checks to the render() loop which would increase or decrease the player's x or z component if their respective key was currently down.
+
+```
+if (INPUTSYS.getKey("w")){
+    playerModel.mesh.position.z += PlayerFacing.z * moveSpeed;
+    playerModel.mesh.position.x += PlayerFacing.x * moveSpeed;
+}
+if (INPUTSYS.getKey("s")){
+    playerModel.mesh.position.z -= PlayerFacing.z * moveSpeed;
+    playerModel.mesh.position.x -= PlayerFacing.x * moveSpeed;
+}
+if (INPUTSYS.getKey("a")){
+    playerModel.mesh.position.z += PlayerRight.z * moveSpeed;
+    playerModel.mesh.position.x += PlayerRight.x * moveSpeed;
+}
+if (INPUTSYS.getKey("d")){
+    playerModel.mesh.position.z -= PlayerRight.z * moveSpeed;
+    playerModel.mesh.position.x -= PlayerRight.x * moveSpeed;
+}
+```
+
+//video link to wasd moving without camera
 
 ### Challenges
 

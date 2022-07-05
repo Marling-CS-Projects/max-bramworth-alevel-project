@@ -29,7 +29,7 @@ THREE.js is very easy to initially set up and I will also be creating an example
 
 Firstly, I imported the 'Live Server' extension in VSCode to help me host it as I found that going to the lengths of using node.js was unnecessary.&#x20;
 
-![](<../.gitbook/assets/image (4).png>)
+![](<../.gitbook/assets/image (4) (1).png>)
 
 Next I wrote my .html and .css files to contain the viewport which the game would be drawn onto. I then created my JavaScript file and imported THREE.js and the GLTFLoader. I ran into issues with importing the GLTFLoader and had to setup an import map in my .html file which fixed the problem.
 
