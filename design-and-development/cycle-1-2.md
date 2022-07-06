@@ -1,7 +1,5 @@
 # 2.2.2 Cycle 2 - adding controls
 
-## Design
-
 ### Objectives
 
 In this cycle I will create and input system that registers inputs in a way that is better than the default JavaScript key detections and also allows for full re-mapping. Then I will create the controls to move around, forwards, backwards and side to side. Finally I will allow the player to rotate the camera all the way round left and right but clamp the movement up and down.
@@ -12,8 +10,6 @@ In this cycle I will create and input system that registers inputs in a way that
 * [x] Assign the keys to actions
   * [x] WASD will default to moving
   * [x] Movement will be relative to the camera's rotation
-
-### Usability Features
 
 ### Key Variables
 

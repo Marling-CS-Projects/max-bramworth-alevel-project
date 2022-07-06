@@ -1,7 +1,5 @@
 # 2.2.3 Cycle 3 - Collisions
 
-## Design
-
 ### Objectives
 
 * [x] Add a class for collidable walls
@@ -146,5 +144,3 @@ My main problem that I encountered this cycle was trying to figure out the logic
 | ---- | --------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | 1    | Stay still                  | Player should stay still and not fall through the floor | As expected                                             |
 | 2    | Walk into the vertical wall | Prevented from moving on the close face                 | As expected, other faces also teleport you to that face |
-
-### Evidence

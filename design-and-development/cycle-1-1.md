@@ -1,7 +1,5 @@
 # 2.2.1 Cycle 1 - THREE.js setup
 
-## Design
-
 ### Objectives
 
 THREE.js is very easy to initially set up and I will also be creating an example scene and setting up some additional parts of THREE.js that I know I will need for the rest of the project.
@@ -11,8 +9,6 @@ THREE.js is very easy to initially set up and I will also be creating an example
   * [x] A rotating cube
   * [x] A light
   * [x] A perspective camera
-
-### Usability Features
 
 ### Key Variables
 
@@ -154,11 +150,7 @@ This section of the project was very straight forward to create as I had made ma
 
 ## Testing
 
-### Tests
-
 | Test | Instructions            | What I expect                                                                                                                   | What actually happens |
 | ---- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
 | 1    | Run code                | See the cube in the world, different faces coloured different shades of turquoise based on how they face the light.             | As expected           |
 | 2    | Run code and then wait. | Observe the cube's rotation on the spot change. It will accelerate and decelerate over time according to its sin wave function. | As expected           |
-
-### Evidence

@@ -1,7 +1,5 @@
 # 2.2.4 Cycle 4 - Level creation tools
 
-## Design
-
 ### Objectives
 
 * [x] Improve the walls I can add the the game world
@@ -9,9 +7,7 @@
 * [x] Add 'structures' - groups of walls that all load and deload together.
 * [x] Import 3D GLTF models
   * [x] Load a 3D model as an example
-* [ ] Add custom cylinder bounding boxes
-
-### Usability Features
+* [x] Add custom cylinder bounding boxes
 
 ### Key Variables
 
@@ -96,7 +92,7 @@ loader.load("./moai.glb", function(gltf){
 });
 ```
 
-Alike with the walls, I soon decided to convert the 3D models to becoming instantiable classes so that they would be able easier to work with when making my game world.
+Alike with the walls, I soon decided to convert the 3D models to becoming instantiable classes so that they would be able easier to work with when making my game world. The values of the hitbox object in this class will be used for the future collision section.
 
 ```
 class THREEDModel {
@@ -157,21 +153,77 @@ const mockuplevel = new structure([
 mockuplevel.load();
 ```
 
-Finally, I want to add cylindrical colliders, these are not native to THREE so I will be creating my own for them.
+Finally, I want to add cylindrical colliders, these are not native to THREE so I will be creating my own for them. The basis of the logic is to find the distance between two cylinders' centres (on the xz plane) and if it is smaller than the radius of the two cylinders combined then there must be an overlap. Provided that one is not significantly higher than the other. For this I decided to add some distance checking functions, one 3D one 2D, to my maths file as I knew I would be using them again later in the project.
+
+{% tabs %}
+{% tab title="Script.js" %}
+```
+render(){
+  ...
+  collidableModels.forEach(colidable => {
+    if (MATHS.distance2D(new THREE.Vector2(playerModel.mesh.position.x,
+    playerModel.mesh.position.z), new THREE.Vector2(colidable._pos.x,
+    colidable._pos.z)) < colidable.hitbox.radius + 0.5  && 
+    (colidable.hitbox.height / 2) + 0.5 > 
+    Math.abs(colidable._pos.y - playerModel.mesh.position.y)){
+      let tries = 0;
+      let ejecDirec = new THREE.Vector3(
+        playerModel.mesh.position.x - colidable._pos.x,
+        0,
+        playerModel.mesh.position.z - colidable._pos.z
+      );
+      ejecDirec.normalize();
+      ejecDirec.x *= 0.02;
+      ejecDirec.z *= 0.02;
+      while (MATHS.distance2D(new THREE.Vector2(
+      playerModel.mesh.position.x, playerModel.mesh.position.z), 
+      new THREE.Vector2(colidable._pos.x, colidable._pos.z)) < 
+      colidable.hitbox.radius + 0.5){
+        tries++;
+        if (tries == 10){
+          break;
+        }
+        playerModel.mesh.position.x += ejecDirec.x;
+        playerModel.mesh.position.z += ejecDirec.z;
+        playerBoundingBox.setFromObject(playerModel.mesh);
+      }
+    }
+  });
+  ...
+}
+```
+{% endtab %}
+
+{% tab title="Maths.js" %}
+```
+export function distance(pointA, pointB){
+  const A = (pointA.x - pointB.x) * (pointA.x - pointB.x);
+  const B = (pointA.y - pointB.y) * (pointA.y - pointB.y);
+  const C = (pointA.z - pointB.z) * (pointA.z - pointB.z);
+  return Math.sqrt(A + B + C);
+}
+
+export function distance2D(pointA, pointB){
+  const A = (pointA.x - pointB.x) * (pointA.x - pointB.x);
+  const B = (pointA.y - pointB.y) * (pointA.y - pointB.y);
+  return Math.sqrt(A + B);
+}
+```
+{% endtab %}
+{% endtabs %}
+
+{% embed url="https://youtu.be/LAhYMTKCaRM" %}
 
 ### Challenges
 
-Description of challenges
+I had some issues with creating the collisions and had many errors where frames would take forever to process so I added a 'kill switch' to the loop that stopped the collision ejection if it went on too long so that frames would eventually load. It mainly came down to few mistypes in my distance function that stretched out the hitboxes to be oblong.
+
+I also faced problems with scope in the THREEDModel class which is why the constructor creates a  class variable, which is copied exactly into a new variable by load() and then load uses the new variable instead.
 
 ## Testing
 
-Evidence for testing
-
-### Tests
-
-| Test | Instructions  | What I expect     | What actually happens |
-| ---- | ------------- | ----------------- | --------------------- |
-| 1    | Run code      | Thing happens     | As expected           |
-| 2    | Press buttons | Something happens | As expected           |
-
-### Evidence
+| Test | Instructions                         | What I expect                                                                               | What actually happens                                        |
+| ---- | ------------------------------------ | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| 1    | Run code                             | No bugs or crashes / errors. Frames don't take forever to load. Textures appear on objects. | As expected                                                  |
+| 2    | Walk into cylinder collider          | Pushed away as if there was an invisible cylinder blocking the player.                      | Cylinder is present but is stretched and oblong in its shape |
+| 2.1  | Walk into cylinder collider (retest) | " "                                                                                         | As expected. Cylinder is now regular in diameter.            |

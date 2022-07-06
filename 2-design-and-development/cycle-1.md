@@ -1,7 +1,5 @@
 # 2.2.0 Cycle 0 - Attempting to use Kaboom.js as a 3D engine
 
-## Design
-
 ### Objectives
 
 In this cycle I will setup Kaboom.js and make sure I can locally host it. I will also create the foundations for the player's camera.
@@ -284,10 +282,6 @@ Rotating is super simple, just increase or decrease the PlayerRot variable. Uses
 The main issue is that ultimately, this is all unnecessary as using a 3D engine such as Three.Js will be much simpler and provide multiple functions for me. It will also do maths required for true 3D such as quaternions and matrix transformations which I do not know how to do and it allows me to use proper 3D models and import them from blender rather than the 'doom-like' sprites I am using in this solution.
 
 ## Testing
-
-Evidence for testing
-
-### Tests
 
 | Test | Instructions           | What I expect                                                                                                                                                                                                                                                               | What actually happens | Pass/Fail |
 | ---- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | --------- |
