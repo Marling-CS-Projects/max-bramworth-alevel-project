@@ -138,17 +138,13 @@ Proof that the player is colliding with the floor shown near the end
 
 ### Challenges
 
-Description of challenges
+My main problem that I encountered this cycle was trying to figure out the logic for how response to collision should be handled. This solution does work but may be annoying for making objects that can be collided with on all sides as these current walls only collide on one side and simply teleport you on any other.
 
 ## Testing
 
-Evidence for testing
-
-### Tests
-
-| Test | Instructions  | What I expect     | What actually happens |
-| ---- | ------------- | ----------------- | --------------------- |
-| 1    | Run code      | Thing happens     | As expected           |
-| 2    | Press buttons | Something happens | As expected           |
+| Test | Instructions                | What I expect                                           | What actually happens                                   |
+| ---- | --------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| 1    | Stay still                  | Player should stay still and not fall through the floor | As expected                                             |
+| 2    | Walk into the vertical wall | Prevented from moving on the close face                 | As expected, other faces also teleport you to that face |
 
 ### Evidence
