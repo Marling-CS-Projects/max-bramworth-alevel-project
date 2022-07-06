@@ -129,6 +129,34 @@ class THREEDModel {
 
 ![positively hilarious](<../.gitbook/assets/image (7).png>)
 
+To individually refer to every wall and model will still be far to much to do. Many models and walls will need loading in at the same time and can be grouped together. To contain these objects I will use the structure class which will be the highest level of the classes.
+
+```
+class structure {
+  constructor(_objects, _models){
+    this.objects = _objects;
+    this.models = _models;
+  }
+
+  load(){
+    this.objects.forEach(obj => {
+      obj.existify();
+    })
+    this.models.forEach(obj => {
+      obj.load();
+    })
+  }
+}
+
+const mockuplevel = new structure([
+  new wall(new THREE.Vector3(0, -3.25, 0), new THREE.Vector3(0, 0, 0), new THREE.Vector3(30, 5, 30), new THREE.Vector3(0, 0.02, 0), true, "./grassig.png"),
+  new wall(new THREE.Vector3(10, 1, 0), new THREE.Vector3(0, 0, 0), new THREE.Vector3(0.5, 5, 5), new THREE.Vector3(-0.02, 0, 0), false, "./rock.png"),
+], [
+  new THREEDModel(new THREE.Vector3(0, -0.25, 3), new THREE.Vector3(0, 1, 0), new THREE.Vector3(0.5, 0.5, 0.5), 1, 2, "./moai.glb"),
+]);
+mockuplevel.load();
+```
+
 
 
 ### Challenges
