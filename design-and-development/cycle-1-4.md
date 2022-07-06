@@ -9,7 +9,7 @@
 * [x] Add 'structures' - groups of walls that all load and deload together.
 * [x] Import 3D GLTF models
   * [x] Load a 3D model as an example
-* [ ] Add custom capsule bounding boxes
+* [ ] Add custom cylinder bounding boxes
 
 ### Usability Features
 
@@ -157,7 +157,7 @@ const mockuplevel = new structure([
 mockuplevel.load();
 ```
 
-
+Finally, I want to add cylindrical colliders, these are not native to THREE so I will be creating my own for them.
 
 ### Challenges
 
