@@ -86,6 +86,12 @@ const second_opening = new structure([
 ]);
 ```
 
+The easiest of the three controls is jumping. Just setting gravity to a positive value and decreasing it back to its original value over time does do the job but doesn't feel very good to control as there is no acceleration. Good feeling jumps in platformers usually have some 'hang time' in them, while my game is not a platformer, it will be useful to use a model that has some in order to make it feel good. My best Idea is trying to make the shape of the jump emulate a Sine graph between 0 - 180. My gravity constant displays the speed that the player is moving up and down so in order to get the speed I will need to differentiate the sine graph, which gives the cosine graph instead. This will be easy to model by having a variable that increases while the player is not grounded.
+
+![](<../.gitbook/assets/jump maths.png>)
+
+
+
 My Idea for how to determine if a left shift should be a roll or a run is simple. When left shift initially goes down, we have no idea of knowing whether the player wants to run or roll, so we will start by assuming the player wants to run. The maximum time left shift can be held and still be a roll will be very short so only the most attentive players will notice the short bit of running anyway. The main script will do this by using a specialised function for left shift only. getLeftShift() will be called every frame and will return one of three out comes: -1, indicating that left shift is being held; 0 indicating that it is not being held and 0<, indicating that it has just been released. updateControls() and clearLSTimer() are both called by the main script when appropriate.
 
 ```
@@ -112,11 +118,69 @@ export function clearLSTimer(){
 }
 ```
 
+In the main script I simply ran a short if else chain to find the correct response and called the updateControls() near the start of the render() loop.
 
+```
+render(){
+    ...
+    INPUTSYS.updateControls();
+    ...
+    if(INPUTSYS.getLeftShift() > 0 && INPUTSYS.getLeftShift() < 0.5 && roll <= 0){
+      playerModel.mesh.scale.set(1, 1, 1);
+      playerModel.mesh.position.y -= 0.5;
+      roll = 5;
+      INPUTSYS.clearLSTimer();
+      run = 0;
+    } else if (INPUTSYS.getLeftShift() == -1){
+      run = 1;
+    } else {
+      INPUTSYS.clearLSTimer();
+      run = 0;
+    }
+    ...
+}
+```
+
+This loop serves to change the state of two two variables. Run, which is added to movement speed and roll, which counts down over time and counts the cooldown and progression of the roll. Later I will use this with the animation.
+
+```
+render(){
+    ...
+    if (roll > 0){
+      if (roll > 2.5){
+        playerModel.mesh.position.z += PlayerFacing.z * rollSpeed;
+        playerModel.mesh.position.x += PlayerFacing.x * rollSpeed;
+      } else{
+        playerModel.mesh.scale.set(1, 2, 1);
+      }
+      roll -= 0.1;
+    }
+    ...
+    if (INPUTSYS.getKey("w")){
+        playerModel.mesh.position.z += PlayerFacing.z * (moveSpeed + run);
+        playerModel.mesh.position.x += PlayerFacing.x * (moveSpeed + run);
+    }
+    if (INPUTSYS.getKey("s")){
+        playerModel.mesh.position.z -= PlayerFacing.z * (moveSpeed + run);
+        playerModel.mesh.position.x -= PlayerFacing.x * (moveSpeed + run);
+    }
+    if (INPUTSYS.getKey("a")){
+        playerModel.mesh.position.z += PlayerRight.z * (moveSpeed + run);
+        playerModel.mesh.position.x += PlayerRight.x * (moveSpeed + run);
+    }
+    if (INPUTSYS.getKey("d")){
+        playerModel.mesh.position.z -= PlayerRight.z * (moveSpeed + run);
+        playerModel.mesh.position.x -= PlayerRight.x * (moveSpeed + run);
+    }
+    ...
+}
+```
+
+// youtube vid of running ad rollin
 
 ### Challenges
 
-One Issue I ran into was with getting the input system to recognise the difference between long and short left shift presses. The main issue I encountered was not being able to roll after pressing left shift too long. This was solved by also having the getLeftShift() 0 flag also rest the timer.
+One Issue I ran into was with getting the input system to recognise the difference between long and short left shift presses. The main issue I encountered was not being able to roll after pressing left shift too long. This was solved by also having the getLeftShift() == 0 flag also rest the timer.
 
 ## Testing
 
