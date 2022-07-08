@@ -90,7 +90,21 @@ The easiest of the three controls is jumping. Just setting gravity to a positive
 
 ![](<../.gitbook/assets/jump maths.png>)
 
+```
+render(){
+    ...
+    if (gravity > 0){
+      playerModel.mesh.position.y += gravity * 0.5;
+    } else{
+      playerModel.mesh.position.y += gravity;
+    }
 
+    if (gravity > -0.2){
+      gravity = Math.cos(Math.min(airTime * 3, 3.1416)) * 0.6;
+    }
+    ...
+}
+```
 
 My Idea for how to determine if a left shift should be a roll or a run is simple. When left shift initially goes down, we have no idea of knowing whether the player wants to run or roll, so we will start by assuming the player wants to run. The maximum time left shift can be held and still be a roll will be very short so only the most attentive players will notice the short bit of running anyway. The main script will do this by using a specialised function for left shift only. getLeftShift() will be called every frame and will return one of three out comes: -1, indicating that left shift is being held; 0 indicating that it is not being held and 0<, indicating that it has just been released. updateControls() and clearLSTimer() are both called by the main script when appropriate.
 
