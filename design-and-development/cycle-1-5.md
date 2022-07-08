@@ -10,9 +10,11 @@
 
 ### Key Variables
 
-| Variable Name | Use                   |
-| ------------- | --------------------- |
-| foo           | does something useful |
+| Variable Name | Use                                                     |
+| ------------- | ------------------------------------------------------- |
+| air time      | Time spent in the air, used to determine gravity value. |
+| roll          | Progression through the roll animation and cooldown     |
+| grounded      | On the Floor?                                           |
 
 ### Pseudocode
 
