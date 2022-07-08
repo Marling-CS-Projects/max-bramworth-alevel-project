@@ -22,7 +22,7 @@
 * [2.2.3 Cycle 3 - Collisions](design-and-development/cycle-1-3.md)
 * [2.2.4 Cycle 4 - Level creation tools](design-and-development/cycle-1-4.md)
 * [2.2.5 Cycle 5 - Further controls: Running, Jumping and Rolling](design-and-development/cycle-1-5.md)
-* [Cycle 6 - Combat I](design-and-development/cycle-1-6.md)
+* [Cycle 6 - Combat](design-and-development/cycle-1-6.md)
 * [Cycle Layout](design-and-development/cycle-1-7.md)
 
 ## 3 Testing <a href="#testing" id="testing"></a>

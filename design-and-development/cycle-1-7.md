@@ -5,8 +5,6 @@
 * [x] Do a thing
 * [x] Do another thing
 
-### Usability Features
-
 ### Key Variables
 
 | Variable Name | Use                   |
