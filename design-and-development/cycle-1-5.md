@@ -103,6 +103,13 @@ render(){
       gravity = Math.cos(Math.min(airTime * 3, 3.1416)) * 0.6;
     }
     ...
+    if (grounded){
+      airTime = 0;
+      grounded = -0.2;
+    } else{
+      airTime += 1/60;
+    }
+    ...
 }
 ```
 
