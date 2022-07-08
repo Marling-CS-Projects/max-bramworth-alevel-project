@@ -10,23 +10,16 @@
 
 ### Key Variables
 
-| Variable Name | Use                                                     |
-| ------------- | ------------------------------------------------------- |
-| air time      | Time spent in the air, used to determine gravity value. |
-| roll          | Progression through the roll animation and cooldown     |
-| grounded      | On the Floor?                                           |
+| Variable Name | Use                   |
+| ------------- | --------------------- |
+| foo           | does something useful |
 
 ### Pseudocode
 
 ```
-render loop:
-    move player downwards amount amount based of current gravity
-    if gravity is not at terminal velocity, keep increasing along a cosine graph
-    if grounded reset the cosine graph
+procedure do_something
     
-    on a short left hift press, roll
-    on a longer one, run
-    if grounded and not rolling and space is pressed, jump
+end procedure
 ```
 
 ## Development
@@ -108,13 +101,6 @@ render(){
 
     if (gravity > -0.2){
       gravity = Math.cos(Math.min(airTime * 3, 3.1416)) * 0.6;
-    }
-    ...
-    if (grounded){
-      airTime = 0;
-      grounded = -0.2;
-    } else{
-      airTime += 1/60;
     }
     ...
 }

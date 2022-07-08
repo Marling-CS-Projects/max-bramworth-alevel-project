@@ -2,10 +2,6 @@
 
 ## Design
 
-### Objectives
-
-\[describe the cycle]
-
 * [x] Do a thing
 * [x] Do another thing
 
@@ -27,13 +23,7 @@ Description of challenges
 
 ## Testing
 
-Evidence for testing
-
-### Tests
-
 | Test | Instructions  | What I expect     | What actually happens |
 | ---- | ------------- | ----------------- | --------------------- |
 | 1    | Run code      | Thing happens     | As expected           |
 | 2    | Press buttons | Something happens | As expected           |
-
-### Evidence
