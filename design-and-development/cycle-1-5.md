@@ -17,9 +17,14 @@
 ### Pseudocode
 
 ```
-procedure do_something
+render loop:
+    move player downwards amount amount based of current gravity
+    if gravity is not at terminal velocity, keep increasing along a cosine graph
+    if grounded reset the cosine graph
     
-end procedure
+    on a short left hift press, roll
+    on a longer one, run
+    if grounded and not rolling and space is pressed, jump
 ```
 
 ## Development
