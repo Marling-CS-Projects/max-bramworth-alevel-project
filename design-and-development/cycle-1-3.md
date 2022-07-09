@@ -89,7 +89,7 @@ const the_ground = new wall(new THREE.Vector3(0, -3.25, 0), new THREE.Vector3(0,
 the_ground.existify();
 ```
 
-![We have now successfully done nothing that we couldn't already do, lets fix that](<../.gitbook/assets/image (5).png>)
+![We have now successfully done nothing that we couldn't already do, lets fix that](<../.gitbook/assets/image (5) (1).png>)
 
 Although its nice to have working, it is ultimately pointless. Firstly, we will need to give the player a hitbox of their own so that they can collide. This is pretty much exactly like the wall but we won't add it to the collidables list, since when would we care if the player was colliding with themselves? Next I will need to add some gravity, although I could just use a vertical wall instead of a floor to test this, I will need gravity for the end project anyway and implementing it now makes sense.
 

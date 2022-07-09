@@ -180,7 +180,7 @@ import * as INPUTSYS from "./input.js";
 {% endtab %}
 {% endtabs %}
 
-![my current debug key (e) showing up in the console](<../.gitbook/assets/image (5) (1).png>)
+![my current debug key (e) showing up in the console](<../.gitbook/assets/image (5) (1) (1).png>)
 
 Having the game recognise keyboard input is good but only means anything when the input has a perceivable effect on the game instead of just a message in the console. To do this I added checks to the render() loop which would increase or decrease the player's x or z component if their respective key was currently down. I also need to update the position of the camera to follow the player as they move around.
 
