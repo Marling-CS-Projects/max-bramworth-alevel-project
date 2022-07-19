@@ -11,9 +11,12 @@
 
 ### Key Variables
 
-| Variable Name | Use                   |
-| ------------- | --------------------- |
-| foo           | does something useful |
+| Variable Name   | Use                                                            |
+| --------------- | -------------------------------------------------------------- |
+| playerState     | The state the player is in                                     |
+| animationLock   | Can the player change animation?                               |
+| class combatant | Anything that can damage and be damaged                        |
+| class attack    | Stores a move a combatant can perform, also checks if it hits. |
 
 ## Development
 
