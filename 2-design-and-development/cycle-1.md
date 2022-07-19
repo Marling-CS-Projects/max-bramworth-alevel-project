@@ -202,7 +202,7 @@ onUpdate("obj", (obj) => {
 })
 ```
 
-![This is what victory looks like](<../.gitbook/assets/image (1) (1) (1) (1) (1).png>)
+![This is what victory looks like](<../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png>)
 
 Finally I'm adding movement to control where the camera is and where it is looking. W/A/S/D keeps your hands nicely spread apart which is more comfortable for the player. Kaboom's inbuilt onKeyDown() triggers every frame so long as the key it references is down so it makes sense to use it for movement controls. I also use the function dt(), delta time, which records the time since the last frame, multiplying the change in a value that increases every fame by a consistent amount by delta time will mean it increases in real time, independent of lag spikes.
 

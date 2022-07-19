@@ -142,7 +142,7 @@ camera.lookAt(cube.mesh.position);
 
 ![Full screen tab, large and letter shaped, works well as expected](<../.gitbook/assets/image (2) (1).png>)
 
-![Very small tab, small and square shaped, still works](<../.gitbook/assets/image (6) (1).png>)
+![Very small tab, small and square shaped, still works](<../.gitbook/assets/image (6) (1) (1).png>)
 
 ### Challenges
 

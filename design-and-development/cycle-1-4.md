@@ -77,7 +77,7 @@ const texLoader = new THREE.TextureLoader();
    ]
 ```
 
-![Eyesore no more](<../.gitbook/assets/image (6).png>)
+![Eyesore no more](<../.gitbook/assets/image (6) (1).png>)
 
 I added this to the wall class and made the constructor require a string that points to the pathway of the material to be used for the wall.
 

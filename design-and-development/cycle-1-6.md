@@ -6,8 +6,8 @@
 * [x] Add a system for quickly adding new attacks to the game
 * [x] Allow the player to attack
   * [x] This should prevent other animations
-  * [ ] Attacks should have some wind up to them
-* [ ] Damageable enemies and objects are removed from the scene when they lose all of their hit points
+  * [x] Attacks should have some wind up to them
+* [x] Damageable enemies and objects are removed from the scene when they lose all of their hit points
 
 ### Key Variables
 
@@ -68,7 +68,7 @@ class attack {
     combatants.forEach(combatant => {
       _Points.forEach(_point => {
         if (MATHS.distance(_point, combatant.model._pos) < this.hitboxDRadius && !MATHS.arrayContains(this.hasHit, combatant.name)){
-          console.log("he got jimmy jammed ඞ");
+          console.log("hit a target");
           this.hasHit.push(combatant.name);
         }
       })
@@ -129,6 +129,86 @@ document.addEventListener('click', e => {
     })
   }
 });
+```
+
+![When the player is close enough and can hit the stone head, we get a message saying that it was hit](<../.gitbook/assets/image (8).png>)
+
+![For debug purposes, I made the player state their state every frame](<../.gitbook/assets/image (6).png>)
+
+Next I need to add some more functionality to the attack, decrease the hp by a set amount - simple. When it reaches or falls below zero, it needs to be removed from view and preferably stopped from using resources. The simple solution is to remove it from all lists and then literally "sweep the model under the rug" by moving it to -500 on the y plane.
+
+```
+class attack {
+     sweep() {
+          ...
+          this.hasHit.push(combatant.name);
+          console.log(combatant.hp);
+          if (combatant.hp <= 0){
+               console.log("yiperd");
+               models[collidableModels.indexOf(combatant.model)].position.y = -500;
+               combatant.model._pos.y = -500;
+               combatants.pop(combatant);
+          }
+     }
+}
+```
+
+![](<../.gitbook/assets/image (9).png>)
+
+// insert video of killing moai
+
+I need to add some wind up to the animation so that the player does not attack immediately, this would be far too powerful. As I already have a wind up stat built into the attacks, I just need to add a few things.
+
+```
+render(){
+    ...
+    if (playerState == "light attack"){
+      if (animationProgression > playerCombatant.lightAttack.windUp){
+        playerCombatant.lightAttack.sweep(playerModel.mesh, ((animationProgression - playerCombatant.lightAttack.windUp) / playerCombatant.lightAttack.duration) * playerCombatant.lightAttack.totalAngle);
+        if (animationProgression > playerCombatant.lightAttack.duration + playerCombatant.lightAttack.windUp){
+          animationLock = false;
+          animationProgression = 0;
+          combatants.forEach(combatant => {
+            combatant.wasHit = false;
+          })
+        }
+      }
+    ...
+}
+```
+
+Lastly I will add a heavy attack that uses right click. This will require me to disable the right click context menu that normally appears when you right click but will mostly be the same as light attacks, just with a different name and different statistics.
+
+```
+render(){
+    ...
+    } else if (playerState == "heavy attack"){
+      if (animationProgression > playerCombatant.heavyAttack.windUp){
+        playerCombatant.heavyAttack.sweep(playerModel.mesh, ((animationProgression - playerCombatant.heavyAttack.windUp) / playerCombatant.heavyAttack.duration) * playerCombatant.heavyAttack.totalAngle);
+        if (animationProgression > playerCombatant.heavyAttack.duration + playerCombatant.heavyAttack.windUp){
+          animationLock = false;
+          animationProgression = 0;
+          combatants.forEach(combatant => {
+            combatant.wasHit = false;
+          })
+        }
+      }
+      animationProgression += FRAMETIME;
+    }
+    ...
+}
+
+window.addEventListener("contextmenu", e => {
+  e.preventDefault();
+  if (playerState == "neutral" || playerState == "walk"){
+    console.log("r click");
+    playerState = "heavy attack";
+    animationLock = true;
+    playerCombatant.lightAttack.hasHit.forEach(item => {
+      playerCombatant.lightAttack.hasHit.pop(item);
+    })
+  }
+})
 ```
 
 ### Challenges
