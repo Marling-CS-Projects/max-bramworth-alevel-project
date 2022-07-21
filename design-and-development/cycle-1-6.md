@@ -1,6 +1,6 @@
-# 2.2.6 Cycle 6 - Combat
+# 2.2.6 Cycle 6 - Combat I (Fundamentals)
 
-## Design
+## Objectives
 
 * [x] Add damageable enemies
 * [x] Add a system for quickly adding new attacks to the game
@@ -224,7 +224,13 @@ The first major issue I faced when I returned was trying to get the hitbox gener
 
 ## Testing
 
-| Test | Instructions  | What I expect     | What actually happens |
-| ---- | ------------- | ----------------- | --------------------- |
-| 1    | Run code      | Thing happens     | As expected           |
-| 2    | Press buttons | Something happens | As expected           |
+| Test | Instructions                                                                      | What I expect                                                                        | What actually happens                                                     |
+| ---- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------- |
+| 1    | light attack while facing enemy and very close                                    | takes 15 damage, new health is console logged                                        | As expected                                                               |
+| 2    | light attack while facing enemy and distance is further that light attack's reach | takes no damage                                                                      | As expected                                                               |
+| 3    | light attack while not facing enemy and very close                                | Will hit if not facing by a few degrees, will not hit if more than 45 degrees        |  As expected                                                              |
+| 4    | heavy attack while facing enemy and very close                                    | takes 35 damage, new health is console logged                                        | As expected                                                               |
+| 5    | heavy attack while facing enemy and further than attack's reach                   | takes no damage                                                                      | As expected                                                               |
+| 6    | heavy attack while not facing enemy and very close                                | Will hit if not facing by a few degrees, will not hit if more than around 15 degrees | As expected                                                               |
+| 7    | try to attack while in different animations                                       | can only attack while walking or standing still                                      | As expected but game also freezes up after trying to attack while falling |
+| 8    | Repeat " "                                                                        | no longer freezes up while trying to attack while falling                            | As expected                                                               |

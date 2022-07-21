@@ -1,11 +1,9 @@
-# 2.2.7 Cycle 7 - Combat II (Animations and refactoring)
+# Cycle Layout
 
 ## Objectives
 
-* [x] Add some basic animation to attacking
-  * [x] The animations must sync with the hitboxes and be near perfect
-* [ ] Re-write attacking functionality to let it work against the player
-* [ ] Have the player become a full on combatant instead of just acting like one
+* [x] Do a thing
+* [x] Do another thing
 
 ### Key Variables
 
