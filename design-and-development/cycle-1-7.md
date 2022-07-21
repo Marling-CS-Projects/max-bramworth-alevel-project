@@ -2,6 +2,7 @@
 
 ## Objectives
 
+* [x] Add stab attacks that move out in a straight line instead of sweeping in front
 * [x] Add some basic animation to attacking
   * [x] The animations must sync with the hitboxes and be near perfect
 * [ ] Re-write attacking functionality to let it work against the player
