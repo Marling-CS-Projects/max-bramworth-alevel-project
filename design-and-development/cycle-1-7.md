@@ -8,6 +8,8 @@
 * [x] Re-write attacking functionality to let it work against the player
 * [ ] Have the player become a full on combatant instead of just acting like one
 
+![Credit to the base human model goes to Tidominer, licensed under Creative Commons](../.gitbook/assets/image.png)
+
 ### Key Variables
 
 | Variable Name | Use                   |
