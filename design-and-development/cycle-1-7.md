@@ -8,10 +8,6 @@
 * [x] Re-write attacking functionality to let it work against the player
 * [x] Have the player become a full on combatant instead of just acting like one
 
-
-
-![Credit to the base human model goes to Tidominer, licensed under Creative Commons](../.gitbook/assets/image.png)
-
 ### Key Variables
 
 | Variable Name | Use                   |
@@ -21,6 +17,10 @@
 ## Development
 
 ### Outcome
+
+In order to give the player more choices in combat, I am now adding the 'stab' move. The stab will move in a straight line in front of the player and be offset by an amount. My current attacks system will make it very easy to add more attacks of complicated or simple shapes. The stab will cover less total area and take longer to perform but have a longer reach and will do more damage and stun enemies for longer.
+
+![Credit to the base human model goes to Tidominer, licensed under Creative Commons](../.gitbook/assets/image.png)
 
 ### Challenges
 
