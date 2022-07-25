@@ -22,7 +22,41 @@
 
 ### Challenges
 
-Description of challenges
+This was a particularly tricky cycle for me as it involved a lot of code re-writing. My biggest issue was with a small part of setting up the player's combatant class. As it required a model, I decided now would also be a good time to make it so that THREEDmodel classes contained a variable pointing to their own model so that it could be animated in real time. This proved challenging because of some bizarre quirks involving scope within the GLTFLoader.load function.
+
+![The issue](../.gitbook/assets/whatkeptmeupfor3hours.png)
+
+My potentially overly complicated solution was to have the model save itself into an array and then create a constant in the load() function that was within the scope of the loader.load() function. Then, in the loader.load(), the model would send it's model to a function which would 'bounce it back' to the model, who could then modify this.\_model appropriately. The constant would point to the model's own position in the array, acting as a sender recipient.
+
+```javascript
+class THREEDModel {
+  constructor(_pos, _rot, _scale, hitboxRadius, hitboxHeight, modelPathway){
+    ...
+    this._model = playerWeapon;
+  }
+
+  load(){
+    ...
+
+    collidableModels.push(this);
+    const CMindex = collidableModels.length - 1;
+    
+    loader.load(this.modelPathway, function(gltf){
+      ...
+      bounceBackGLTFScene(gltf.scene, CMindex);
+    });
+  }
+
+  set_Model(modul){
+    this._model = modul;
+  }
+}
+
+function bounceBackGLTFScene(scene, recipient){
+  console.log("bouncing " + recipient.toString());
+  collidableModels[recipient].set_Model(scene);
+}
+```
 
 ## Testing
 
