@@ -6,7 +6,9 @@
 * [x] Add some basic animation to attacking
   * [x] The animations must sync with the hitboxes and be near perfect
 * [x] Re-write attacking functionality to let it work against the player
-* [ ] Have the player become a full on combatant instead of just acting like one
+* [x] Have the player become a full on combatant instead of just acting like one
+
+
 
 ![Credit to the base human model goes to Tidominer, licensed under Creative Commons](../.gitbook/assets/image.png)
 
