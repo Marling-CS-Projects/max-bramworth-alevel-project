@@ -158,7 +158,7 @@ class attack {
 
 ![](<../.gitbook/assets/image (9).png>)
 
-// insert video of killing moai
+{% embed url="https://youtu.be/fG_RgDv0CyM" %}
 
 I need to add some wind up to the animation so that the player does not attack immediately, this would be far too powerful. As I already have a wind up stat built into the attacks, I just need to add a few things.
 
