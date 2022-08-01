@@ -81,7 +81,7 @@ const texLoader = new THREE.TextureLoader();
 
 I added this to the wall class and made the constructor require a string that points to the pathway of the material to be used for the wall.
 
-Next I got round to adding 3D models. The recommended format is .glb which is a common file format that Blender, the program I use to 3D model, works with. Setting it up is simple but I did have some trouble modifying the transform and took a few attempts to do so.&#x20;
+Next I got round to adding 3D models. The recommended format is .gltf and .glb which is a common file format that Blender, the program I use to 3D model, works with. Setting it up is simple but I did have some trouble modifying the transform and took a few attempts to do so.&#x20;
 
 ```
 loader.load("./moai.glb", function(gltf){
@@ -219,6 +219,8 @@ export function distance2D(pointA, pointB){
 I had some issues with creating the collisions and had many errors where frames would take forever to process so I added a 'kill switch' to the loop that stopped the collision ejection if it went on too long so that frames would eventually load. It mainly came down to few mistypes in my distance function that stretched out the hitboxes to be oblong.
 
 I also faced problems with scope in the THREEDModel class which is why the constructor creates a  class variable, which is copied exactly into a new variable by load() and then load uses the new variable instead.
+
+Another issue with THREEDmodels is that their model may not load in on the first frame, when the rest of the code is running. Although this did not cause me too many issues in this cycle, it may be an issue in future ones.
 
 ## Testing
 

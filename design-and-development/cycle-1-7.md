@@ -10,9 +10,11 @@
 
 ### Key Variables
 
-| Variable Name | Use                   |
-| ------------- | --------------------- |
-| foo           | does something useful |
+| Variable Name   | Use                                                                               |
+| --------------- | --------------------------------------------------------------------------------- |
+| playerWeapon    | Links to the gltf scene of the weapon model so that it can be moved in animations |
+| attack.type     | Tells the attack what hitbox pattern to draw and how to animate the sword.        |
+| playerCombatant | The combatant that links to the player, replaced the old playerCombatant object   |
 
 ## Development
 
@@ -156,7 +158,9 @@ function bounceBackGLTFScene(scene, recipient){
 
 ## Testing
 
-| Test | Instructions  | What I expect     | What actually happens |
-| ---- | ------------- | ----------------- | --------------------- |
-| 1    | Run code      | Thing happens     | As expected           |
-| 2    | Press buttons | Something happens | As expected           |
+| Test | Instructions         | What I expect                                                                  | What actually happens                                                                               |
+| ---- | -------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| 1    | move around          | player model moves with player and rotates to match direction                  | As expected, albeit with a slight delay - feels like he is being pulled on a lead instead of moving |
+| 2    | move around (repeat) | " " + in sync with player hitbox                                               | As Expected                                                                                         |
+| 3    | light attack         | sword model swings in an arc in front of the player                            | As Expected                                                                                         |
+| 4    | heavy attack         | Sword stabs out slightly to the side of player, hitbox is accurate to the stab | As Expected                                                                                         |
