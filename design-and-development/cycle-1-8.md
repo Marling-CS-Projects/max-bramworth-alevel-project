@@ -2,7 +2,7 @@
 
 ## Objectives
 
-* [ ] Allow enemies to detect the player in range
+* [x] Allow enemies to detect the player in range
 * [ ] Allow enemies to find a path to the player that does not cross obstacles
   * [ ] Using A\*
 * [ ] Let enemies decide when and in what direction to perform an attack
@@ -78,7 +78,7 @@ My first issue was with player detection and I had a minor issue where the ray t
 
 ## Testing
 
-| Test | Instructions  | What I expect     | What actually happens |
-| ---- | ------------- | ----------------- | --------------------- |
-| 1    | Run code      | Thing happens     | As expected           |
-| 2    | Press buttons | Something happens | As expected           |
+| Test | Instructions                                                     | What I expect                                                                          | What actually happens                           |
+| ---- | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| 1    | Move around map, changing distance and cover protection          | When too far away, undetected. When behind cover, undetected. When neither, detected.  | Player is always considered hiding behind cover |
+| 2    | Move around map, changing distance and cover protection (retest) | When too far away, undetected. When behind cover, undetected. When neither, detected.  | As expected                                     |
