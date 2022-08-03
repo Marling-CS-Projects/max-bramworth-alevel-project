@@ -105,7 +105,7 @@ function render() {
 render();
 ```
 
-![The camera is now rendering our rather boring scene](<../.gitbook/assets/image (3).png>)
+![The camera is now rendering our rather boring scene](<../.gitbook/assets/image (3) (2).png>)
 
 In order to fill in the scene, I added a cube. I made it a pleasant shade of turquoise and used a phong material in order for it to be able to be lit by the directional light, which I used the hex code of light from the sun for. To make sure that the camera was rendering at 60fps, I made the cube rotate on the spot.
 
