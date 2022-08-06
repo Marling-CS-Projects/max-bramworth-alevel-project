@@ -114,7 +114,7 @@ I then changed up lots of the code that replaced the object named 'playerCombata
 
 I also took the time to give the player a better body that a red rectangle. I downloaded a low-poly human model from Sketchfab to use and moved the sword's idle spot to fit snugly in his hand.
 
-![Credit to the base human model goes to Tidominer, licensed under Creative Commons](<../.gitbook/assets/image (3).png>)
+![Credit to the base human model goes to Tidominer, licensed under Creative Commons](<../.gitbook/assets/image (3) (2).png>)
 
 {% embed url="https://youtu.be/mMkWKNV0640" %}
 
