@@ -26,9 +26,7 @@ This system is mostly inspired by the one used in Terraria, which I used because
 
 ![a brief depiction of the system diagram](<../.gitbook/assets/image (1).png>)
 
-This is useful but I will not immediately begin work on the AI, first I will need to make the player detection and pathfinding work.
-
-Player detection will use a raycast from the enemy to the player. If it doesn't hit anything on its way to the player and it's length is less than the specified detection distance value, then the player has been spotted and the enemy becomes alert.
+Firstly, I will be making the player detection. Player detection will use a raycast from the enemy to the player. If it doesn't hit anything on its way to the player and it's length is less than the specified detection distance value, then the player has been spotted and the enemy becomes alert.
 
 ```
 class Combatant {
@@ -73,13 +71,39 @@ Somewhere in the sea of the console messages, you can see it working
 
 I decided to start work on the AI and the enemy pathing at the same time because making the enemy move would, in the future, be controlled by their AI so if I wrote it to not use one now, I would have to re-write it later.
 
-```
+```javascript
+...
+
+const meleeSimple = {
+  onUpdate: function(self){
+    self.update();
+  },
+  whileAlerted: function(self){
+    console.log("can see!");
+    self.move(new THREE.Vector3(playerModel.mesh.position.x - self.model._pos.x, playerModel.mesh.position.y - self.model._pos.y, playerModel.mesh.position.z - self.model._pos.z));
+  }
+}
+
+...
+
 function render(){
-    ...
-    
-    ...
+  ...
+  
+  combatants.forEach(combatant => {
+    if (combatant.name != "player"){ // the player isn't an AI (probably) so don't control them
+      combatant.AI.onUpdate(combatant);
+      combatant.canSpotPlayer(combatant.model._pos, playerModel.mesh.position);
+      if (combatant.alerted){
+        combatant.AI.whileAlerted(combatant);
+      }
+    }
+  })
+  
+  ...
 }
 ```
+
+
 
 ### Challenges
 
