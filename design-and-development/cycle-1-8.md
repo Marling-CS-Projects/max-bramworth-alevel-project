@@ -24,7 +24,7 @@ The first action I took for this cycle was to determine the architecture of how 
 
 This system is mostly inspired by the one used in Terraria, which I used because it was simple, yet allowed for an incredibly large set of unique feeling enemies.
 
-![a brief depiction of the system diagram](<../.gitbook/assets/image (1).png>)
+![a brief depiction of the system diagram](<../.gitbook/assets/image (1) (2).png>)
 
 Firstly, I will be making the player detection. Player detection will use a raycast from the enemy to the player. If it doesn't hit anything on its way to the player and it's length is less than the specified detection distance value, then the player has been spotted and the enemy becomes alert.
 
@@ -69,7 +69,7 @@ function render(){
 Somewhere in the sea of the console messages, you can see it working
 {% endembed %}
 
-I decided to start work on the AI and the enemy pathing at the same time because making the enemy move would, in the future, be controlled by their AI so if I wrote it to not use one now, I would have to re-write it later.
+I decided to start work on the AI and the enemy pathing at the same time because making the enemy move would, in the future, be controlled by their AI so if I wrote it to not use one now, I would have to re-write it later. For this, I also added multiple functions to the combatant class such as update(), which does things the enemy needs to do every frame such as reduce timers, check their state and calculate their facing direction.
 
 ```javascript
 ...
@@ -102,6 +102,28 @@ function render(){
   ...
 }
 ```
+
+I then made the enemy simply move along the vector towards the player. Some enemies in the future may require some more complicated algorithms but most enemies will be fought in open rooms anyway so it may overcomplicate things to do now.
+
+```javascript
+class Combatant{
+    ...
+    move(direction){
+    if(this.state == "neutral" || this.state == "walking"){
+      this.state = "walking";
+      direction.y = 0;
+      direction.normalize();
+      this.model._pos.addVectors(direction.multiplyScalar(this.speed), this.model._pos);
+      this.model._model.position.set(this.model._pos.x, this.model._pos.y, this.model._pos.z);
+    }
+  }
+  ...
+}
+```
+
+We set the y component of the move vector to 0 so the enemy cannot fly to reach the player.
+
+![The enemy now moves to whenever the player gets too close](../.gitbook/assets/image.png)
 
 
 
