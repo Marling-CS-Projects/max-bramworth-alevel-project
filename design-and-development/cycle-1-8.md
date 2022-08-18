@@ -4,7 +4,7 @@
 
 * [x] Allow enemies to detect the player in range
 * [x] Allow enemies to move to the player or any other location based on their AI
-* [ ] Let enemies decide when and in what direction to perform an attack
+* [x] Let enemies decide when and in what direction to perform an attack
   * [x] The attack should be able to hit the player and fellow enemies (should already be functional but we can only really check now)
 * [ ] Allow enemies to pick from a specified range of attacks
   * [ ] Have the enemy use some logic to determine the attack (proximity, attack pattern, shuffled random)
@@ -24,7 +24,7 @@ The first action I took for this cycle was to determine the architecture of how 
 
 This system is mostly inspired by the one used in Terraria, which I used because it was simple, yet allowed for an incredibly large set of unique feeling enemies.
 
-![a brief depiction of the system diagram](<../.gitbook/assets/image (1) (2).png>)
+![a brief depiction of the system diagram](<../.gitbook/assets/image (1).png>)
 
 Firstly, I will be making the player detection. Player detection will use a raycast from the enemy to the player. If it doesn't hit anything on its way to the player and it's length is less than the specified detection distance value, then the player has been spotted and the enemy becomes alert.
 
@@ -123,9 +123,9 @@ class Combatant{
 
 We set the y component of the move vector to 0 so the enemy cannot fly to reach the player.
 
-![The enemy now moves to whenever the player gets too close](../.gitbook/assets/image.png)
+![The enemy now moves to whenever the player gets too close](<../.gitbook/assets/image (3).png>)
 
-
+As I already had some work on the AIs done, I decided to next move on to teaching the AI to be able to attack the player.
 
 ### Challenges
 
