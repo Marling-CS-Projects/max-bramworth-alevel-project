@@ -6,8 +6,8 @@
 * [x] Allow enemies to move to the player or any other location based on their AI
 * [x] Let enemies decide when and in what direction to perform an attack
   * [x] The attack should be able to hit the player and fellow enemies (should already be functional but we can only really check now)
-* [ ] Allow enemies to pick from a specified range of attacks
-  * [ ] Have the enemy use some logic to determine the attack (proximity, attack pattern, shuffled random)
+* [x] Allow enemies to pick from a specified range of attacks
+  * [x] Have the enemy use some logic to determine the attack (proximity, attack pattern, shuffled random)
 * [ ] Disable enemy AI upon death
 
 ### Key Variables
