@@ -28,7 +28,7 @@ This system is mostly inspired by the one used in Terraria, which I used because
 
 Firstly, I will be making the player detection. Player detection will use a raycast from the enemy to the player. If it doesn't hit anything on its way to the player and it's length is less than the specified detection distance value, then the player has been spotted and the enemy becomes alert.
 
-```
+```javascript
 class Combatant {
   ...
   canSpotPlayer(playerPos, origin){
@@ -164,7 +164,7 @@ I also decided it was time to replace the default model and weapon. I want the f
 
 ![A clothed version of the default human model with some decay added to sell the undead feel.](<../.gitbook/assets/image (1).png>)
 
-![The harpoon's reach will often catch newer players off guard but it's lengthy animation time gives the player plenty of time to retaliate.](../.gitbook/assets/image.png)
+![The harpoon's reach will often catch newer players off guard but its lengthy animation time gives the player plenty of time to retaliate.](../.gitbook/assets/image.png)
 
 ### Challenges
 
@@ -172,7 +172,11 @@ My first issue was with player detection and I had a minor issue where the ray t
 
 ## Testing
 
-| Test | Instructions                                                     | What I expect                                                                          | What actually happens                           |
-| ---- | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| 1    | Move around map, changing distance and cover protection          | When too far away, undetected. When behind cover, undetected. When neither, detected.  | Player is always considered hiding behind cover |
-| 2    | Move around map, changing distance and cover protection (retest) | When too far away, undetected. When behind cover, undetected. When neither, detected.  | As expected                                     |
+| Test | Instructions                                                     | What I expect                                                                                                    | What actually happens                           |
+| ---- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| 1    | Move around map, changing distance and cover protection          | When too far away, undetected. When behind cover, undetected. When neither, detected.                            | Player is always considered hiding behind cover |
+| 2    | Move around map, changing distance and cover protection (retest) | When too far away, undetected. When behind cover, undetected. When neither, detected.                            | As expected                                     |
+| 3    | Move towards enemy                                               | Moves towards the player model when close enough.                                                                | As expected                                     |
+| 4    | Get in alerted range, then move side to side                     | Rotation of enemy model tracks to face the player.                                                               | Works between bearings of 0-90 and 180-270      |
+| 5    | Get in alerted range, then move side to side (retest)            | Rotation of enemy model tracks to face the player.                                                               | As expected                                     |
+| 6    | Let the enemy approach                                           | Gets up to 2 units from the player and then stops and attacks. Attack will hit and deal 35 damage to the player. | As expected                                     |
