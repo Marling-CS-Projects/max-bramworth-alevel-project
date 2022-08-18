@@ -8,7 +8,7 @@
   * [x] The attack should be able to hit the player and fellow enemies (should already be functional but we can only really check now)
 * [x] Allow enemies to pick from a specified range of attacks
   * [x] Have the enemy use some logic to determine the attack (proximity, attack pattern, shuffled random)
-* [ ] Disable enemy AI upon death
+* [x] Disable enemy AI upon death
 
 ### Key Variables
 
@@ -24,7 +24,7 @@ The first action I took for this cycle was to determine the architecture of how 
 
 This system is mostly inspired by the one used in Terraria, which I used because it was simple, yet allowed for an incredibly large set of unique feeling enemies.
 
-![a brief depiction of the system diagram](<../.gitbook/assets/image (1).png>)
+![a brief depiction of the system diagram](<../.gitbook/assets/image (1) (2).png>)
 
 Firstly, I will be making the player detection. Player detection will use a raycast from the enemy to the player. If it doesn't hit anything on its way to the player and it's length is less than the specified detection distance value, then the player has been spotted and the enemy becomes alert.
 
@@ -160,11 +160,11 @@ const meleeSimpleStabber = {
 }
 ```
 
-I also decided it was time to replace the default model and weapon. I want the first area of my game to be a swamp / bayou place so the common enemy you would encounter there would be undead fishermen. Untrained and unprepared for combat, they use their fishing harpoons as improvised weapons.
+I also decided it was time to replace the default model and weapon. I want the first area of my game to be a swamp / bayou so the common enemy the player would encounter there would be undead fishermen. Untrained and unprepared for combat, they use their fishing harpoons as improvised weapons.
 
-![A clothed version of the default human model with some decay added to sell the undead feel.](../.gitbook/assets/image.png)
+![A clothed version of the default human model with some decay added to sell the undead feel.](<../.gitbook/assets/image (1).png>)
 
-![The harpoon's reach will often catch newer players off guard but it's lengthy animation time gives the player plenty of time to retaliate.](<../.gitbook/assets/image (4).png>)
+![The harpoon's reach will often catch newer players off guard but it's lengthy animation time gives the player plenty of time to retaliate.](../.gitbook/assets/image.png)
 
 ### Challenges
 

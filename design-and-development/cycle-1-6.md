@@ -24,7 +24,7 @@
 
 This cycle is important because it's mechanics are the main focus point of my game. I started by creating two classes, Something to damage and something to damage with. Combatants will be enemies and they take damage, check for detection and have the base stats that the enemy AI's will use. I plan to have reusable AI scripts which all are fed a Combatant and then added to the scene. Attacks have base stats and functions for each type of attack that can register. The function is called each frame to check for collisions between the weapon and the enemy.
 
-![Simplified diagram, weapons will use many more hitboxes and they will all be smaller too.](<../.gitbook/assets/image (2) (1).png>)
+![Simplified diagram, weapons will use many more hitboxes and they will all be smaller too.](<../.gitbook/assets/image (2) (2).png>)
 
 The function casts a ray in the specified direction and then places sphere colliders, a point that checks for other points in range, on it. Multiple spheres are used to give length to the weapon. The weapon also has a list of all enemies it has hit which is cleared at the start of a swing to prevent hitting an enemy multiple times with an attack.
 
