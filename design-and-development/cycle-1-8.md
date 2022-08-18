@@ -125,7 +125,46 @@ We set the y component of the move vector to 0 so the enemy cannot fly to reach 
 
 ![The enemy now moves to whenever the player gets too close](<../.gitbook/assets/image (3).png>)
 
-As I already had some work on the AIs done, I decided to next move on to teaching the AI to be able to attack the player.
+As I already had some work on the AIs done, I decided to next move on to teaching the AI to be able to attack the player. This would all be different for every AI but for the meleeSimple, all it needs to do is perform it's attack when it gets close enough in the direction of the player.
+
+```javascript
+const meleeSimpleStabber = {
+  onUpdate: function(self){
+    self.update();
+    if (self.state == "attacking" && self.attackCD <= 0){
+      if (self.animationProgression > self.attacks[0].windUp){
+        self.attacks[0].attack(self.model._pos, self.model._rot.y,
+          ((self.animationProgression - self.attacks[0].windUp) / self.attacks[0].duration) * self.attacks[0].totalAngle,
+          new THREE.Vector3(self.right.x * -0.15, 0, self.right.z * -0.15));
+        if (self.animationProgression > self.attacks[0].duration + self.attacks[0].windUp){
+          self.animationProgression = -FRAMETIME;
+          self.state = "neutral";
+          self.attackCD = 0.75;
+        }
+      } else{
+        self.attacks[0].prepareWeapon(self.animationProgression / self.attacks[0].windUp, self.right, self.model._pos, self.model._rot);
+      }
+      self.animationProgression += FRAMETIME;
+    }
+  },
+  whileAlerted: function(self){
+    self.move(new THREE.Vector3(playerModel.mesh.position.x - self.model._pos.x, playerModel.mesh.position.y - self.model._pos.y, playerModel.mesh.position.z - self.model._pos.z), 2);
+    if ((self.state == "neutral" || self.state == "walking") && self.attackCD <= 0 && MATHS.distance(self.model._pos, playerModel.mesh.position) < 2){
+      self.state == "attacking";
+      self.animationProgression = 0.001;
+      self.attacks[0].hasHit.forEach(item => {
+        self.attacks[0].hasHit.pop(item);
+      })
+    }
+  }
+}
+```
+
+I also decided it was time to replace the default model and weapon. I want the first area of my game to be a swamp / bayou place so the common enemy you would encounter there would be undead fishermen. Untrained and unprepared for combat, they use their fishing harpoons as improvised weapons.
+
+![A clothed version of the default human model with some decay added to sell the undead feel.](../.gitbook/assets/image.png)
+
+![The harpoon's reach will often catch newer players off guard but it's lengthy animation time gives the player plenty of time to retaliate.](<../.gitbook/assets/image (4).png>)
 
 ### Challenges
 
