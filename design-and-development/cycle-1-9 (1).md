@@ -1,9 +1,11 @@
-# 2.2.9 Cycle 9 - Combat IV (Player Death)
+# 2.2.9 Cycle 9 - Combat IV        (Player Death)
 
 ## Objectives
 
-* [x] Do a thing
-* [x] Do another thing
+* [x] Have enemies stop trying to attack player when the player dies
+* [ ] Allow the player to use respawn points...
+  * [ ] ...and have them respawn there upon death
+* [ ] Have a death screen before respawning
 
 ### Key Variables
 

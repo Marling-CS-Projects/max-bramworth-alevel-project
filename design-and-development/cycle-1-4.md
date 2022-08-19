@@ -1,5 +1,9 @@
 # 2.2.4 Cycle 4 - Level creation tools
 
+### Design
+
+I will be able to make levels much faster with tools for creating them so that will give me the ability to make more content for the game, which will allow for more variety and a bigger map for the player to do more in.
+
 ### Objectives
 
 * [x] Improve the walls I can add the the game world
