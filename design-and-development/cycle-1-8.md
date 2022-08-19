@@ -12,9 +12,10 @@
 
 ### Key Variables
 
-| Variable Name | Use                   |
-| ------------- | --------------------- |
-| foo           | does something useful |
+| Variable Name             | Use                                                                                                               |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| meleeSimple               | AI object for any enemy whose battle plan is no more complicated than run at the player and attack when in range. |
+| .Update, .OnAlerted, etc. | Commonly named functions between all AI's that are uniquely coded that run on certain conditions.                 |
 
 ## Development
 
@@ -180,3 +181,4 @@ My first issue was with player detection and I had a minor issue where the ray t
 | 4    | Get in alerted range, then move side to side                     | Rotation of enemy model tracks to face the player.                                                               | Works between bearings of 0-90 and 180-270      |
 | 5    | Get in alerted range, then move side to side (retest)            | Rotation of enemy model tracks to face the player.                                                               | As expected                                     |
 | 6    | Let the enemy approach                                           | Gets up to 2 units from the player and then stops and attacks. Attack will hit and deal 35 damage to the player. | As expected                                     |
+| 7    | Reduce the enemy's health to 0                                   | AI turns off                                                                                                     | As expected                                     |

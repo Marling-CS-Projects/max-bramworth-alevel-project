@@ -1,4 +1,4 @@
-# 2.2.9 Cycle 9 - Combat IV (Player Death)
+# Cycle Layout
 
 ## Objectives
 
