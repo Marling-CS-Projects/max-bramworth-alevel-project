@@ -1,9 +1,5 @@
 # 2.2.3 Cycle 3 - Collisions
 
-### Design
-
-The player's movement needs to be able to be restricted by the environment so that the environments they explore can pose navigational challenge. Otherwise the player will be able to walk through them.
-
 ### Objectives
 
 * [x] Add a class for collidable walls

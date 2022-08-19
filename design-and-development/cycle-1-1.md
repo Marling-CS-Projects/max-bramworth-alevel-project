@@ -1,10 +1,8 @@
 # 2.2.1 Cycle 1 - THREE.js setup
 
-### Design
-
-I will need to correctly set up THREE for use so that I can begin development. Our camera should be perspective as that mirrors how vision works in real life, allowing the player to better understand the world they are playing in.
-
 ### Objectives
+
+THREE.js is very easy to initially set up and I will also be creating an example scene and setting up some additional parts of THREE.js that I know I will need for the rest of the project.
 
 * [x] Set up THREE
 * [x] Create an example scene consisting of:

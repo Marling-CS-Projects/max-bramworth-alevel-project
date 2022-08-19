@@ -1,10 +1,8 @@
 # 2.2.2 Cycle 2 - adding controls
 
-### Design
-
-The player needs to be able to tightly control their character in order to feel in control. Using the keys located around the left of the keyboard and the mouse will spread the player's hand out, making it more comfortable to play.
-
 ### Objectives
+
+In this cycle I will create and input system that registers inputs in a way that is better than the default JavaScript key detections and also allows for full re-mapping. Then I will create the controls to move around, forwards, backwards and side to side. Finally I will allow the player to rotate the camera all the way round left and right but clamp the movement up and down.
 
 * [x] Create and add the player to the scene
 * [x] Create a set of variables that track which keys are down

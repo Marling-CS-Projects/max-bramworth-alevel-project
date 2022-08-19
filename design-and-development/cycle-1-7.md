@@ -1,5 +1,9 @@
 # 2.2.7 Cycle 7 - Combat II (Animations and refactoring)
 
+### Design
+
+Having animations will allow the player to follow what attacks are being performed visually instead of just assuming that they are happening. Having the player also be able to perform a heavier attack with a differently shaped hitbox makes it more risky but have a much larger payoff. Having weapon model accurate hitboxes lets the player make a reasonable guess about where they will get hit.
+
 ## Objectives
 
 * [x] Add stab attacks that move out in a straight line instead of sweeping in front

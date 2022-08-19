@@ -1,6 +1,8 @@
 # 2.2.5 Cycle 5 - Further controls: Running, Jumping and Rolling
 
-###
+### Design
+
+Adding additional controls gives the player more options in gameplay, creating more interesting combat and traversal challenges. Running lets the player move faster between places, which could also be achieved by increasing the walking speed but that reduces the accuracy of the controls, having a toggleable speed increase allows for the best of both worlds. Jumps will allow the player to be able to effectively explore the third dimension. Rolls make dodging attacks in combat easier and also allow the player to move into small gaps.
 
 ### Objectives
 

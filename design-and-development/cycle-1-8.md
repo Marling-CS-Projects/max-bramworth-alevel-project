@@ -1,5 +1,9 @@
 # 2.2.8 Cycle 8 - Combat III (Enemies)
 
+### Design
+
+Enemies should have variety in order to stop encounters from feeling all the same. This goes beyond giving them different numbers and different enemies should act differently too.
+
 ## Objectives
 
 * [x] Allow enemies to detect the player in range

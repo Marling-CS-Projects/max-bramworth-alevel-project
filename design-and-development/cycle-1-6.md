@@ -1,5 +1,9 @@
 # 2.2.6 Cycle 6 - Combat I (Fundamentals)
 
+### Design
+
+The main focus point of my game is in combat so having a simple base for the combat system will help to give every combat encounter a simple base. Attacks will not come out immediately so that the player will have to decide if an attack is safe to perform or not, making combat more interesting than mashing left click.
+
 ## Objectives
 
 * [x] Add damageable enemies
