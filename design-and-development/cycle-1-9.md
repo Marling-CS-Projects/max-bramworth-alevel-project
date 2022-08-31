@@ -7,8 +7,8 @@ The player needs to be able fail or the game will not have any stakes. The playe
 ## Objectives
 
 * [x] Have enemies stop trying to attack player when the player dies
-* [ ] Allow the player to use respawn points...
-  * [ ] ...and have them respawn there upon death
+* [x] Allow the player to use respawn points...
+  * [x] ...and have them respawn there upon death
 * [ ] Create a textEvent manager that puts text onto the screen
   * [ ] Have one for death
   * [ ] Have one for activating a respawn point
@@ -23,13 +23,82 @@ The player needs to be able fail or the game will not have any stakes. The playe
 
 ### Outcome
 
+As combatants are removed from the list of active combatants upon death already, preventing the AIs from giving the enemies instructions and making them not attack the dead player. To start development of respawning, I decided to start by making the points at which the player would interact to respawn. As the code for determining interactions was simple (if pressing e and in range) I converted it to a class called interractableObject which more specific classes such as respawn points, doors and switches would inherit from.
+
+```javascript
+class interactableObject{ // exists only to be inherited
+  constructor(_model, _range){
+    this.model = _model;
+    this.range = _range;
+    this.canBeInterracted;
+  }
+
+  checkInRange(){
+    if (MATHS.distance(this.model._pos, playerModel.mesh.position) < this.range){
+      this.canBeInterracted = true;
+    } else{
+      this.canBeInterracted = false;
+    }
+  }
+}
+
+class respawnPoint extends interactableObject {
+  constructor(_model, _range, _encounters, resPoint){
+    super(_model, _range);
+    this.playerSpawningAt = false;
+    this.encounters = _encounters; // list of structures
+    this.respawnPoint = resPoint;
+    respawnPoints.push(this);
+  }
+
+  save(){
+    this.checkInRange();
+    if (this.canBeInterracted){
+      respawnStandard = this;
+      playerCombatant.hp = 100;
+      console.log("saved spawn at: (" + this.respawnPoint.x.toString() + ", " + this.respawnPoint.y.toString() + ", " + this.respawnPoint.z.toString() + ")");
+    }
+  }
+}
+```
+
+Upon getting injured, the combatant class checks to see if this damage is lethal for the combatant. I added a section where, if it is, it then checks if the combatant is the player and resets the positions of all enemies and their health. It also revives enemies if they have died. It then moves the player to the location of the last respawn point the interacted with.
+
 ### Challenges
 
-Description of challenges
+Resetting alive enemies proved to be troublesome, one amusing bug had all alive enemies become twice as fast and have their animations play twice as fast - eventually getting to a point where the player dies mere frames after respawning.
+
+```javascript
+class combatant{
+    ...
+    hurt(damage, stun){
+      ...
+      if (this.hp <= 0){
+        ...
+        if (this.name == "player"){ //we need to reset everything
+          combatants.forEach(_combatant => {
+            _combatant.model._pos.set(_combatant.spawnPos.x, _combatant.spawnPos.y, _combatant.spawnPos.z);
+            _combatant.model._model.position.set(_combatant.spawnPos.x, _combatant.spawnPos.y, _combatant.spawnPos.z);
+            _combatant.hp = _combatant.maxHP;
+            _combatant.state = "neutral";
+          })
+          desceased.forEach(_combatant => {
+            _combatant.revive();
+          });
+          desceased.shift(desceased.length);
+          playerModel.mesh.position.set(respawnStandard.respawnPoint.x, respawnStandard.respawnPoint.y, respawnStandard.respawnPoint.z);
+        }
+      ...
+    }
+  ...
+}
+```
 
 ## Testing
 
-| Test | Instructions  | What I expect     | What actually happens |
-| ---- | ------------- | ----------------- | --------------------- |
-| 1    | Run code      | Thing happens     | As expected           |
-| 2    | Press buttons | Something happens | As expected           |
+| Test | Instructions                                                       | What I expect                                                                                                                         | What actually happens                                                                |
+| ---- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| 1    | Press e at different distances to a respawn point                  | At close distances where the player is nearly touching, it gives a message confirming it has saved. At further distances it does not. | As expected                                                                          |
+| 2    | Save at a respawn spot, then die to an enemy and respawn.          | Respawn at the respawn spot. All enemies have moved back to their place and are at full health.                                       | As expected. However, enemies that did not die become twice as fast until they die.  |
+| 3    | Save at a respawn spot, then die to an enemy and respawn. (retest) | Respawn at the respawn spot. All enemies have moved back to their place and are at full health.                                       | As expected                                                                          |
+| 4    | Kill an enemy then die to another                                  | The killed enemy has respawned at its position.                                                                                       | As expected                                                                          |
