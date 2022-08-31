@@ -9,7 +9,9 @@ The player needs to be able fail or the game will not have any stakes. The playe
 * [x] Have enemies stop trying to attack player when the player dies
 * [ ] Allow the player to use respawn points...
   * [ ] ...and have them respawn there upon death
-* [ ] Have a death screen before respawning
+* [ ] Create a textEvent manager that puts text onto the screen
+  * [ ] Have one for death
+  * [ ] Have one for activating a respawn point
 
 ### Key Variables
 
