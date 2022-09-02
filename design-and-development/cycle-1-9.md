@@ -15,9 +15,11 @@ The player needs to be able fail or the game will not have any stakes. The playe
 
 ### Key Variables
 
-| Variable Name | Use                   |
-| ------------- | --------------------- |
-| foo           | does something useful |
+| Variable Name            | Use                                                                              |
+| ------------------------ | -------------------------------------------------------------------------------- |
+| class InteractableObject | Inherited by any object the player can interact with by pressing e in proximity. |
+| class respawnPoint       | The modifies the respawn location of the player when interacted with.            |
+| RespawnPoint             | The current respawn point to use when the player dies.                           |
 
 ## Development
 
