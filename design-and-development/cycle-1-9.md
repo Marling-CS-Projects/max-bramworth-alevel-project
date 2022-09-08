@@ -9,9 +9,9 @@ The player needs to be able fail or the game will not have any stakes. The playe
 * [x] Have enemies stop trying to attack player when the player dies
 * [x] Allow the player to use respawn points...
   * [x] ...and have them respawn there upon death
-* [ ] Create a textEvent manager that puts text onto the screen
-  * [ ] Have one for death
-  * [ ] Have one for activating a respawn point
+* [x] Create a textEvent manager that puts text onto the screen
+  * [x] Have one for death
+  * [x] Have one for activating a respawn point
 
 ### Key Variables
 
@@ -66,10 +66,6 @@ class respawnPoint extends interactableObject {
 
 Upon getting injured, the combatant class checks to see if this damage is lethal for the combatant. I added a section where, if it is, it then checks if the combatant is the player and resets the positions of all enemies and their health. It also revives enemies if they have died. It then moves the player to the location of the last respawn point the interacted with.
 
-### Challenges
-
-Resetting alive enemies proved to be troublesome, one amusing bug had all alive enemies become twice as fast and have their animations play twice as fast - eventually getting to a point where the player dies mere frames after respawning.
-
 ```javascript
 class combatant{
     ...
@@ -95,6 +91,54 @@ class combatant{
   ...
 }
 ```
+
+To make the player's death immediately clear, I will have it display on the screen. I used an object to manage all of the text that appears on screen similar to this e.g. locations, deaths, boss defeats.
+
+{% tabs %}
+{% tab title="Script.js" %}
+```
+const titleText = document.createElement("h1");
+titleText.textContent = "";
+document.body.appendChild(titleText);
+const TitleTextManager = {
+  durationLeft: 0,
+  setTitle: function(text, duration){
+    titleText.textContent = text;
+    this.durationLeft = duration;
+  },
+  update: function(){
+    if(this.durationLeft > 0){
+      this.durationLeft -= FRAMETIME;
+    } else{
+      if (titleText.textContent == "You Died"){
+        respawnPlayer();
+      }
+      titleText.textContent = "";
+    }
+  },
+}
+```
+{% endtab %}
+
+{% tab title="Style.css" %}
+```
+h1 {
+    z-index: 10000;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    font-size: 700%;
+    font-family: Cinzel-Regular;
+    color: floralwhite;
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### Challenges
+
+Resetting alive enemies proved to be troublesome, one amusing bug had all alive enemies become twice as fast and have their animations play twice as fast - eventually getting to a point where the player dies mere frames after respawning.
 
 ## Testing
 
