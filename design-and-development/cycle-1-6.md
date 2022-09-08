@@ -138,7 +138,7 @@ document.addEventListener('click', e => {
 });
 ```
 
-![When the player is close enough and can hit the stone head, we get a message saying that it was hit](<../.gitbook/assets/image (8).png>)
+![When the player is close enough and can hit the stone head, we get a message saying that it was hit](<../.gitbook/assets/image (8) (1).png>)
 
 ![For debug purposes, I made the player state their state every frame](<../.gitbook/assets/image (6).png>)
 

@@ -81,7 +81,7 @@ floor.mesh.scale.set(10, 5, 40);
 scene.add(floor.mesh);
 ```
 
-![](<../.gitbook/assets/image (4).png>)
+![](<../.gitbook/assets/image (4) (2).png>)
 
 The controls use a separate file which checks keyboard inputs over the renderer window. That file then exports a function which allows the main file to ask the input file if a particular key is currently being pressed. I then also have to import the file into the main script so that it can use it.
 

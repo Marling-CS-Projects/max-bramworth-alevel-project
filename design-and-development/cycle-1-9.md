@@ -96,7 +96,7 @@ To make the player's death immediately clear, I will have it display on the scre
 
 {% tabs %}
 {% tab title="Script.js" %}
-```
+```javascript
 const titleText = document.createElement("h1");
 titleText.textContent = "";
 document.body.appendChild(titleText);
@@ -121,7 +121,7 @@ const TitleTextManager = {
 {% endtab %}
 
 {% tab title="Style.css" %}
-```
+```css
 h1 {
     z-index: 10000;
     position: absolute;
@@ -136,9 +136,15 @@ h1 {
 {% endtab %}
 {% endtabs %}
 
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
 ### Challenges
 
 Resetting alive enemies proved to be troublesome, one amusing bug had all alive enemies become twice as fast and have their animations play twice as fast - eventually getting to a point where the player dies mere frames after respawning.
+
+I also had issues with respawning the player while the 'You Died' was on the screen, leading to bugs with the player still being able to input during certain edge cases.
 
 ## Testing
 
