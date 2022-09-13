@@ -15,9 +15,10 @@ A main menu is required for my game as it will mean that the player is not immed
 
 ### Key Variables
 
-| Variable Name | Use                   |
-| ------------- | --------------------- |
-| foo           | does something useful |
+| Variable Name | Use                                                                                                                    |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| buttonText    | The button on the main menu that is pressed to start the game                                                          |
+| healthBar     | a \<div> with a background colour, it's size and position is manipulated to tell the player how much health they have. |
 
 ## Development
 
@@ -118,7 +119,7 @@ canvas {
 {% endtab %}
 {% endtabs %}
 
-//menu vid (recorded) goes here
+{% embed url="https://youtu.be/jIIi_Xli4vw" %}
 
 Satisfied with the main menu's functionality, I moved onto using html for the UI. I started with a player health bar, the size of which would scale to show the player how much health they have left.&#x20;
 
@@ -158,7 +159,7 @@ div {
 {% endtab %}
 {% endtabs %}
 
-//hurt vid (not recorded) goes here
+{% embed url="https://youtu.be/seJx7Y54Wzc" %}
 
 ### Challenges
 
