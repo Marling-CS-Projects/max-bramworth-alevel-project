@@ -27,8 +27,9 @@
 * [2.2.8 Cycle 8 - Combat III (Enemies)](design-and-development/cycle-1-8.md)
 * [2.2.9 Cycle 9 - Combat IV        (Player Death)](design-and-development/cycle-1-9.md)
 * [2.2.10 Cycle 10 - Main Menu and UI](design-and-development/cycle-1-10.md)
+* [2.2.11 Cycle 11 - Content Creation](design-and-development/cycle-1-11.md)
 * [2.2.37 Cycle 37 - E3 Press Conference](design-and-development/2.2.37-cycle-37-e3-press-conference.md)
-* [Cycle Layout](design-and-development/cycle-1-11.md)
+* [Cycle Layout](design-and-development/cycle-1-12.md)
 
 ## 3 Testing <a href="#testing" id="testing"></a>
 
