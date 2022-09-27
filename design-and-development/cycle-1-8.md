@@ -128,7 +128,7 @@ class Combatant{
 
 We set the y component of the move vector to 0 so the enemy cannot fly to reach the player.
 
-![The enemy now moves to whenever the player gets too close](<../.gitbook/assets/image (3).png>)
+![The enemy now moves to whenever the player gets too close](<../.gitbook/assets/image (3) (3).png>)
 
 As I already had some work on the AIs done, I decided to next move on to teaching the AI to be able to attack the player. This would all be different for every AI but for the meleeSimple, all it needs to do is perform it's attack when it gets close enough in the direction of the player.
 
