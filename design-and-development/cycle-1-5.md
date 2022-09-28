@@ -216,13 +216,12 @@ One Issue I ran into was with getting the input system to recognise the differen
 
 ## Testing
 
-Evidence for testing
-
-### Tests
-
-| Test | Instructions  | What I expect     | What actually happens |
-| ---- | ------------- | ----------------- | --------------------- |
-| 1    | Run code      | Thing happens     | As expected           |
-| 2    | Press buttons | Something happens | As expected           |
+| Test | Instructions                      | What I expect                                                                | What actually happens |
+| ---- | --------------------------------- | ---------------------------------------------------------------------------- | --------------------- |
+| 1    | Press space                       | Player moves upwards, then gradually returns to ground                       | As expected           |
+| 2    | Jump to a higher elevation        | As above, with a lower velocity before the player touches the ground         | As expected           |
+| 3    | Jump to a lower elevation         | As above, with a higher velocity before the player touches the ground        | As expected           |
+| 4    | Press left shift for a short time | Player rolls in direction of camera quickly, but for a finite amount of time | As expected           |
+| 5    | Hold left shift                   | Player can move as normal, but faster                                        | As expected           |
 
 ### Evidence
