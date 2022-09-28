@@ -167,7 +167,7 @@ const meleeSimpleStabber = {
 
 I also decided it was time to replace the default model and weapon. I want the first area of my game to be a swamp / bayou so the common enemy the player would encounter there would be undead fishermen. Untrained and unprepared for combat, they use their fishing harpoons as improvised weapons.
 
-![A clothed version of the default human model with some decay added to sell the undead feel.](<../.gitbook/assets/image (1).png>)
+![A clothed version of the default human model with some decay added to sell the undead feel.](<../.gitbook/assets/image (1) (3).png>)
 
 ![The harpoon's reach will often catch newer players off guard but its lengthy animation time gives the player plenty of time to retaliate.](<../.gitbook/assets/image (10).png>)
 
