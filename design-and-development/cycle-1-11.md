@@ -15,9 +15,9 @@ In order to give the player something to do, I will need to add content for the 
 
 ### Key Variables
 
-| Variable Name | Use                   |
-| ------------- | --------------------- |
-| foo           | does something useful |
+| Variable Name | Use                                        |
+| ------------- | ------------------------------------------ |
+| levers pulled | The number of levers that have been pulled |
 
 ## Development
 
