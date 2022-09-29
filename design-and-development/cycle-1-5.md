@@ -39,7 +39,7 @@ render loop:
 
 Knowing that this would be what was left of all of the movement controls, I quickly made a level for the player to navigate around using these new control options. As I was writing it, I realised that the code for the entire world would much much larger than I anticipated and would probably need it's own file which structures would be loaded from.
 
-```
+```javascript
 const spawn = new structure([
   new wall(new THREE.Vector3(0, -3.25, 15), new THREE.Vector3(0, 0, 0), new THREE.Vector3(10, 5, 40), new THREE.Vector3(0, 0.02, 0), true, "./grassig.png"),
   new wall(new THREE.Vector3(7, 9, 14.75), new THREE.Vector3(0, 0, -0.1), new THREE.Vector3(4, 20, 39.5), new THREE.Vector3(-0.02, 0, 0), false, "./rock.png"), // left wall
@@ -101,7 +101,7 @@ The easiest of the three controls is jumping. Just setting gravity to a positive
 
 ![](<../.gitbook/assets/jump maths.png>)
 
-```
+```javascript
 render(){
     ...
     if (gravity > 0){
@@ -126,7 +126,7 @@ render(){
 
 My Idea for how to determine if a left shift should be a roll or a run is simple. When left shift initially goes down, we have no idea of knowing whether the player wants to run or roll, so we will start by assuming the player wants to run. The maximum time left shift can be held and still be a roll will be very short so only the most attentive players will notice the short bit of running anyway. The main script will do this by using a specialised function for left shift only. getLeftShift() will be called every frame and will return one of three out comes: -1, indicating that left shift is being held; 0 indicating that it is not being held and 0<, indicating that it has just been released. updateControls() and clearLSTimer() are both called by the main script when appropriate.
 
-```
+```javascript
 export function getLeftShift(){
   if (leftShiftDown){
     return (-1);
@@ -152,7 +152,7 @@ export function clearLSTimer(){
 
 In the main script I simply ran a short if else chain to find the correct response and called the updateControls() near the start of the render() loop.
 
-```
+```javascript
 render(){
     ...
     INPUTSYS.updateControls();
@@ -175,7 +175,7 @@ render(){
 
 This loop serves to change the state of two two variables. Run, which is added to movement speed and roll, which counts down over time and counts the cooldown and progression of the roll. Later I will use this with the animation.
 
-```
+```javascript
 render(){
     ...
     if (roll > 0){

@@ -62,13 +62,13 @@ class structure:
 
 First I want to add textures to the walls and floors so that I can make the world look better. This will be essential for improving the look of the game and is fortunately easy to do. Initially, I had been creating materials like this:
 
-```
+```javascript
 material: new THREE.MeshPhongMaterial({ color: 0x00ffff })
 ```
 
 But that solution only allows for block colours. By creating a texture loader I can replace this code with an array of six items, one for each face, that each point to an image file.
 
-```
+```javascript
 const texLoader = new THREE.TextureLoader();
 
     material: [
@@ -87,7 +87,7 @@ I added this to the wall class and made the constructor require a string that po
 
 Next I got round to adding 3D models. The recommended format is .gltf and .glb which is a common file format that Blender, the program I use to 3D model, works with. Setting it up is simple but I did have some trouble modifying the transform and took a few attempts to do so.&#x20;
 
-```
+```javascript
 loader.load("./moai.glb", function(gltf){
       gltf.scene.position.set(_pos.x, _pos.y, _pos.z);
       gltf.scene.rotation.set(_rot.x, _rot.y, _rot.z);
@@ -98,7 +98,7 @@ loader.load("./moai.glb", function(gltf){
 
 Alike with the walls, I soon decided to convert the 3D models to becoming instantiable classes so that they would be able easier to work with when making my game world. The values of the hitbox object in this class will be used for the future collision section.
 
-```
+```javascript
 class THREEDModel {
   constructor(_pos, _rot, _scale, hitboxRadius, hitboxHeight, modelPathway){
     this.modelPathway = modelPathway;
@@ -131,7 +131,7 @@ class THREEDModel {
 
 To individually refer to every wall and model will still be far to much to do. Many models and walls will need loading in at the same time and can be grouped together. To contain these objects I will use the structure class which will be the highest level of the classes.
 
-```
+```javascript
 class structure {
   constructor(_objects, _models){
     this.objects = _objects;
@@ -161,7 +161,7 @@ Finally, I want to add cylindrical colliders, these are not native to THREE so I
 
 {% tabs %}
 {% tab title="Script.js" %}
-```
+```javascript
 render(){
   ...
   collidableModels.forEach(colidable => {
@@ -199,7 +199,7 @@ render(){
 {% endtab %}
 
 {% tab title="Maths.js" %}
-```
+```javascript
 export function distance(pointA, pointB){
   const A = (pointA.x - pointB.x) * (pointA.x - pointB.x);
   const B = (pointA.y - pointB.y) * (pointA.y - pointB.y);

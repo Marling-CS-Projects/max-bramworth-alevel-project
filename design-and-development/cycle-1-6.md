@@ -34,7 +34,7 @@ The function casts a ray in the specified direction and then places sphere colli
 
 {% tabs %}
 {% tab title="Main.js" %}
-```
+```javascript
 class Combatant {
   constructor(model, hp, spd, detec, acuteDetec, attacks, name){
     this.name = name;
@@ -86,7 +86,7 @@ class attack {
 {% endtab %}
 
 {% tab title="Maths.js" %}
-```
+```javascript
 export function arrayContains(array, item){ // not very mathsy but i can't think of a bette place to put it
   for(let i = 0; i < array.length; i++){
     if (array[i] == item){
@@ -105,7 +105,7 @@ The playerState variable is checked near the end of every frame and calls the sw
 
 Sweep() is being used as an example of an attack method. The class will contain many more attacking methods than just sweep() with some being specialised to a single enemy type or weapon. The class will also have to contain a way of selecting which is the appropriate method to use.
 
-```
+```javascript
 let playerState = "neutral"; //neutral, roll, jump, fall, walk, run, light attack, heavy attack, block, stunned
 let animationProgression = 0;
 let animationLock = false;
@@ -144,7 +144,7 @@ document.addEventListener('click', e => {
 
 Next I need to add some more functionality to the attack, decrease the hp by a set amount - simple. When it reaches or falls below zero, it needs to be removed from view and preferably stopped from using resources. The simple solution is to remove it from all lists and then literally "sweep the model under the rug" by moving it to -500 on the y plane.
 
-```
+```javascript
 class attack {
      sweep() {
           ...
@@ -166,7 +166,7 @@ class attack {
 
 I need to add some wind up to the animation so that the player does not attack immediately, this would be far too powerful. As I already have a wind up stat built into the attacks, I just need to add a few things.
 
-```
+```javascript
 render(){
     ...
     if (playerState == "light attack"){
@@ -186,7 +186,7 @@ render(){
 
 Lastly I will add a heavy attack that uses right click. This will require me to disable the right click context menu that normally appears when you right click but will mostly be the same as light attacks, just with a different name and different statistics.
 
-```
+```javascript
 render(){
     ...
     } else if (playerState == "heavy attack"){

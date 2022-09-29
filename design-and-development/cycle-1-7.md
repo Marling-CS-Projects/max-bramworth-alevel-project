@@ -26,7 +26,7 @@ Having animations will allow the player to follow what attacks are being perform
 
 In order to give the player more choices in combat, I am now adding the 'stab' move. The stab will move in a straight line in front of the player and be offset by an amount. My current attacks system will make it very easy to add more attacks of complicated or simple shapes. The stab will cover less total area and take longer to perform but have a longer reach and will do more damage and stun enemies for longer. In order for attacks to know which function to use when generating their hitbox, I gave them a string determining it.
 
-```
+```javascript
 class attack{
     ...
     attack(a, b, c){
@@ -60,7 +60,7 @@ class attack{
 
 While doing this I also decided that the checking collision would be its own separate function so that once a hitbox was generated, I could just call the function instead of re-writing all of the code again.
 
-```
+```javascript
 class attack{
   ...
   checkCollision(){
@@ -83,7 +83,7 @@ class attack{
 
 The problem with attacks so far is that the player has no visual indicator for what is currently happening. To fix this I added a model of a sword which hovers by the player's side when not in use but swipes or stabs when an attack is being used. The animations are created in real time by moving the model on top of all of the hitboxes and, hopefully, covering them perfectly.
 
-```
+```javascript
 class attack {
   ...
   showWeapon(direction){
