@@ -16,7 +16,7 @@
 ## 2 Design and Development <a href="#design-and-development" id="design-and-development"></a>
 
 * [2.1 Design Frame](2-design-and-development/systems-diagram.md)
-* [2.2.0 Cycle 0 - Attempting to use Kaboom.js as a 3D engine](2-design-and-development/cycle-1.md)
+* [2.2.0 Cycle 0 - 3D rendering using Kaboom.js](2-design-and-development/cycle-1.md)
 * [2.2.1 Cycle 1 - THREE.js setup](design-and-development/cycle-1-1.md)
 * [2.2.2 Cycle 2 - adding controls](design-and-development/cycle-1-2.md)
 * [2.2.3 Cycle 3 - Collisions](design-and-development/cycle-1-3.md)
