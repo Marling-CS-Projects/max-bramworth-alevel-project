@@ -1,11 +1,11 @@
-# 2.2.0 Cycle 0 - Attempting to use Kaboom.js as a 3D engine
+# 2.2.0 Cycle 0 - 3D rendering using Kaboom.js
 
 ### Objectives
 
 In this cycle I will setup Kaboom.js and make sure I can locally host it. I will also create the foundations for the player's camera.
 
 * [x] Successfully import Kaboom
-* [x] Be able to locally host it on my computer
+* [x] Locally host it using node js on my computer
 * [x] Have the Vertical and Horizontal positions of the objects on the camera represent a 3D view accurately
 * [x] Let the player move the camera around using the mouse&#x20;
 
