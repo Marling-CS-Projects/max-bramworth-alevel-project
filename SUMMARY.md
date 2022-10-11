@@ -18,7 +18,7 @@
 * [2.1 Design Frame](2-design-and-development/systems-diagram.md)
 * [2.2.0 Cycle 0 - 3D rendering using Kaboom.js](2-design-and-development/cycle-1.md)
 * [2.2.1 Cycle 1 - THREE.js setup](design-and-development/cycle-1-1.md)
-* [2.2.2 Cycle 2 - adding controls](design-and-development/cycle-1-2.md)
+* [2.2.2 Cycle 2 - Adding controls](design-and-development/cycle-1-2.md)
 * [2.2.3 Cycle 3 - Collisions](design-and-development/cycle-1-3.md)
 * [2.2.4 Cycle 4 - Level creation tools](design-and-development/cycle-1-4.md)
 * [2.2.5 Cycle 5 - Further controls: Running, Jumping and Rolling](design-and-development/cycle-1-5.md)
