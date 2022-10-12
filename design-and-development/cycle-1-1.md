@@ -27,7 +27,7 @@ I will need to correctly set up THREE for use so that I can begin development. O
 
 Firstly, I imported the 'Live Server' extension in VSCode to help me host it as I found that going to the lengths of using node.js was unnecessary.&#x20;
 
-![](<../.gitbook/assets/image (4) (1).png>)
+![](<../.gitbook/assets/image (4) (1) (2).png>)
 
 Next I wrote my .html and .css files to contain the viewport which the game would be drawn onto. I then created my JavaScript file and imported THREE.js and the GLTFLoader. I ran into issues with importing the GLTFLoader and had to setup an import map in my .html file which fixed the problem.
 
@@ -107,7 +107,7 @@ function render() {
 render();
 ```
 
-![The camera is now rendering our rather boring scene](<../.gitbook/assets/image (3) (1).png>)
+![The camera is now rendering our rather boring scene](<../.gitbook/assets/image (3) (1) (2).png>)
 
 In order to fill in the scene, I added a cube. I made it a pleasant shade of turquoise and used a phong material in order for it to be able to be lit by the directional light, which I used the hex code of light from the sun for. To make sure that the camera was rendering at 60fps, I made the cube rotate on the spot.
 
