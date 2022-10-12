@@ -81,7 +81,7 @@ const texLoader = new THREE.TextureLoader();
    ]
 ```
 
-![Eyesore no more](<../.gitbook/assets/image (6) (1) (2).png>)
+![Eyesore no more](<../.gitbook/assets/image (6) (1).png>)
 
 I added this to the wall class and made the constructor require a string that points to the pathway of the material to be used for the wall.
 
@@ -127,7 +127,7 @@ class THREEDModel {
 }
 ```
 
-![positively hilarious](<../.gitbook/assets/image (7) (1).png>)
+![positively hilarious](<../.gitbook/assets/image (7).png>)
 
 To individually refer to every wall and model will still be far to much to do. Many models and walls will need loading in at the same time and can be grouped together. To contain these objects I will use the structure class which will be the highest level of the classes.
 
