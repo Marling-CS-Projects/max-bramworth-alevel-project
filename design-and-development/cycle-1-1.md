@@ -27,7 +27,7 @@ I will need to correctly set up THREE for use so that I can begin development. O
 
 Firstly, I imported the 'Live Server' extension in VSCode to help me host it as I found that going to the lengths of using node.js was unnecessary.&#x20;
 
-![](<../.gitbook/assets/image (4) (1).png>)
+![](<../.gitbook/assets/image (4) (1) (2).png>)
 
 Next I wrote my .html and .css files to contain the viewport which the game would be drawn onto. I then created my JavaScript file and imported THREE.js and the GLTFLoader. I ran into issues with importing the GLTFLoader and had to setup an import map in my .html file which fixed the problem.
 
@@ -144,7 +144,7 @@ camera.lookAt(cube.mesh.position);
 
 ![Full screen tab, large and letter shaped, works well as expected](<../.gitbook/assets/image (2) (1).png>)
 
-![Very small tab, small and square shaped, still works](<../.gitbook/assets/image (6) (1) (1).png>)
+![Very small tab, small and square shaped, still works](<../.gitbook/assets/image (6) (1) (1) (1).png>)
 
 ### Challenges
 

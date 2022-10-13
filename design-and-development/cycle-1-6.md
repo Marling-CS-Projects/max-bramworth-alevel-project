@@ -140,7 +140,7 @@ document.addEventListener('click', e => {
 
 ![When the player is close enough and can hit the stone head, we get a message saying that it was hit](<../.gitbook/assets/image (8) (1) (1).png>)
 
-![For debug purposes, I made the player state their state every frame](<../.gitbook/assets/image (6).png>)
+![For debug purposes, I made the player state their state every frame](<../.gitbook/assets/image (6) (1).png>)
 
 Next I need to add some more functionality to the attack, decrease the hp by a set amount - simple. When it reaches or falls below zero, it needs to be removed from view and preferably stopped from using resources. The simple solution is to remove it from all lists and then literally "sweep the model under the rug" by moving it to -500 on the y plane.
 
@@ -222,7 +222,7 @@ window.addEventListener("contextmenu", e => {
 
 I found getting attacks to work particularly hard because I started work on the system and then stopped to update my development log and fix some bugs and by time I returned I did not know where I had left of and how what functions and classes would interact with each other, what would handle what, what would register what, etc. I am glad that I stopped however as this allowed me to re-think my system. My new system is far better than the old system, where the weapon hitbox was defined by a single single box3. Box3's are defined by two points in space, the vertice with the lowest x, y and z values (min) and the vertice with the highest x, y and z values (max), then the computer infers the existence of a box using those two values. However, this is a flawed system that cannot take rotation (except in multiples of 90) into account. This would have left attacks that were directed at 45 degrees from a cardinal direction massive and those along a cardinal direction appropriately sized.
 
-![](<../.gitbook/assets/image (5).png>)
+![](<../.gitbook/assets/image (5) (2).png>)
 
 The first major issue I faced when I returned was trying to get the hitbox generation to work. As much of the work happens invisibly, it is hard to check and test so I had to run through the procedure myself to check for bugs and errors. I also had a bug where the enemy could be hit up to 17 times by an attack. I solved this by creating the list of what enemies a sing attack has hit and denying the game from registering a hit if they are already on the list.
 
