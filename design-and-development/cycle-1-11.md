@@ -268,7 +268,7 @@ const mcdonaldsFallen_Capital = new structure([
 
 </details>
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>A nearly top down view of all of the world</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (24).png" alt=""><figcaption><p>A nearly top down view of all of the world</p></figcaption></figure>
 
 ### Challenges
 
