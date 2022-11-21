@@ -13,3 +13,4 @@ description: Computer Science H446-03
 
 Note to Assessor: This project has been created with interactive elements. In order to view as intended by the students, please follow the secure link below.
 
+[https://app.gitbook.com/o/-MM\_7qMOfSgqBidGd9EN/s/M8jERGvvW84vPTPWiL5v/](https://app.gitbook.com/o/-MM\_7qMOfSgqBidGd9EN/s/M8jERGvvW84vPTPWiL5v/)
