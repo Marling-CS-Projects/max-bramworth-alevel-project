@@ -274,7 +274,7 @@ const mcdonaldsFallen_Capital = new structure([
 
 The main challenge of this cycle was tedium. The solution I had to making and placing walls was very tedious to use and it could take hours of constant trial and error to make the world. I should have perhaps tried to make a way to create levels in another tool, e.g. Blender, and then find a way to automatically apply hitboxes to it.
 
-I did also have issues with some of the AI's. The giant defender was tricky but his developments help lay the ground work for the other more complicated AIs, such as the boss who attacks in predetermined patterns.&#x20;
+I did also have issues with some of the AI's. The giant defender was tricky but his developments helped lay the ground work for the other more complicated AIs, such as the boss who attacks in predetermined patterns.&#x20;
 
 ## Testing
 
