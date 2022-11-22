@@ -69,7 +69,7 @@ function OpenGate(gate){
 }
 ```
 
-Using 179 lines of code, I created a world map for the player to explore. None of this was very interesting, mainly just the same lines of code over and over with some numbers tweaked.
+I created a world map for the player to explore. I created three separate areas (Greymarsh, Fallen Capital & The Immortal Keep) that would each have a different variety of enemies and visual identities.
 
 <details>
 
