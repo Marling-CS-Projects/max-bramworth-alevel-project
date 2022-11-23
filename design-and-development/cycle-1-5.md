@@ -214,7 +214,9 @@ render(){
 }
 ```
 
-// youtube vid of running ad rollin
+{% embed url="https://youtu.be/x6kNUQUHF0c" %}
+Recorded during a later stage in process, graphics have been upgraded but mechanics are untouched.
+{% endembed %}
 
 ### Challenges
 
