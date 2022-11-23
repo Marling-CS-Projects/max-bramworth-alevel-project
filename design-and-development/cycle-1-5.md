@@ -39,6 +39,10 @@ render loop:
 
 Knowing that this would be what was left of all of the movement controls, I quickly made a level for the player to navigate around using these new control options. As I was writing it, I realised that the code for the entire world would much much larger than I anticipated and would probably need it's own file which structures would be loaded from.
 
+<details>
+
+<summary>Code for level so far (Long)</summary>
+
 ```javascript
 const spawn = new structure([
   new wall(new THREE.Vector3(0, -3.25, 15), new THREE.Vector3(0, 0, 0), new THREE.Vector3(10, 5, 40), new THREE.Vector3(0, 0.02, 0), true, "./grassig.png"),
@@ -96,6 +100,8 @@ const second_opening = new structure([
   new THREEDModel(new THREE.Vector3(-43.5, 22, 27.5), new THREE.Vector3(0, 0.2, 0), new THREE.Vector3(2.5, 2.5, 2.5), 3, 5, "./moai.glb"),
 ]);
 ```
+
+</details>
 
 The easiest of the three controls is jumping. Just setting gravity to a positive value and decreasing it back to its original value over time does do the job but doesn't feel very good to control as there is no acceleration. Good feeling jumps in platformers usually have some 'hang time' in them, while my game is not a platformer, it will be useful to use a model that has some in order to make it feel good. My best Idea is trying to make the shape of the jump emulate a Sine graph between 0 - 180. My gravity constant displays the speed that the player is moving up and down so in order to get the speed I will need to differentiate the sine graph, which gives the cosine graph instead. This will be easy to model by having a variable that increases while the player is not grounded.
 
