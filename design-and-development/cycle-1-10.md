@@ -2,7 +2,7 @@
 
 ### Design
 
-A main menu is required for my game as it will mean that the player is not immediately thrown into the game upon starting it up. Additionally, many players expect there to be a start menu and will be confused if one is not present.
+A main menu is required for my game as it will mean that the player is not immediately thrown into the game upon starting it up. It can also be usedful for setting a tone or theme for the rest of the game and for accessing settings and save files.
 
 ## Objectives
 
