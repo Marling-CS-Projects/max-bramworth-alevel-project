@@ -2,9 +2,7 @@
 
 ### Design
 
-A main menu is required for my game as it will mean that the player is not immediately thrown into the game upon starting it up. It can also be useful for setting a tone or theme for the rest of the game and for accessing settings and save files.
-
-The HUD is vitally important as it conveys critical in game information about the player that would normally be hidden away within the code. Choosing what to show and what not to show can change the way a player approaches a game.
+A main menu is required for my game as it will mean that the player is not immediately thrown into the game upon starting it up. Additionally, many players expect there to be a start menu and will be confused if one is not present.
 
 ## Objectives
 
@@ -122,8 +120,6 @@ canvas {
 {% endtabs %}
 
 {% embed url="https://youtu.be/jIIi_Xli4vw" %}
-Most notable at the start, the title text can be seen shifting from white to red.
-{% endembed %}
 
 Satisfied with the main menu's functionality, I moved onto using html for the UI. I started with a player health bar, the size of which would scale to show the player how much health they have left.&#x20;
 
@@ -146,7 +142,7 @@ class combatant(){
 ```
 {% endtab %}
 
-{% tab title="style.css" %}
+{% tab title="Second Tab" %}
 ```css
 ...
 div {

@@ -58,7 +58,7 @@ Next I wrote my .html and .css files to contain the viewport which the game woul
 {% endtab %}
 
 {% tab title="style.css" %}
-```
+```css
 html, body {
 	overflow: hidden;
     user-select: none;
@@ -76,7 +76,7 @@ canvas {
 {% endtab %}
 
 {% tab title="script.js" %}
-```
+```javascript
 import * as THREE from "three";
 ```
 {% endtab %}
@@ -84,7 +84,7 @@ import * as THREE from "three";
 
 I then wrote some sample code for the scene to render, featuring a rotating cube and a light source that causes different amounts of shading on the surfaces as the cube rotates. For this I had to first initialise the scene, which everything to be rendered would be placed in. The next most important part of rendering a scene is the camera and its renderer. I made the camera scale to match any window size so that the user can minimise the tab to not be full screen if that suits them better. Finally I needed to tell the camera to render the scene, so I used a repeating render() function that calls sixty times a second using the requestAnimationFrame() function that THREE.js uses.
 
-```
+```javascript
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(
@@ -111,7 +111,7 @@ render();
 
 In order to fill in the scene, I added a cube. I made it a pleasant shade of turquoise and used a phong material in order for it to be able to be lit by the directional light, which I used the hex code of light from the sun for. To make sure that the camera was rendering at 60fps, I made the cube rotate on the spot.
 
-```
+```javascript
 const sun = new THREE.DirectionalLight(0xfdfbd3, 0.5);
 sun.position.set(-5, 3, 2);
 scene.add(sun);
@@ -137,14 +137,14 @@ render();
 
 This code ran into an issue however, the screen was still empty. I soon realised that this was because the camera was inside the cube and the location of the near clipping planes meant that the cube was impossible to see therefore as none of its planes were inside the view frustrum. This was fixed by simply moving the camera backwards. I then used the lookAt function to make sure that the cube was in the centre of frame.
 
-```
+```javascript
 camera.position.set(0, 1, 5);
 camera.lookAt(cube.mesh.position);
 ```
 
 ![Full screen tab, large and letter shaped, works well as expected](<../.gitbook/assets/image (2) (1) (1).png>)
 
-![Very small tab, small and square shaped, still works](<../.gitbook/assets/image (6) (1) (1).png>)
+![This tab, small and square shaped, still works](<../.gitbook/assets/image (6) (1) (1).png>)
 
 ### Challenges
 
