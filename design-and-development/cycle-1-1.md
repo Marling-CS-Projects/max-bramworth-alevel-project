@@ -33,7 +33,7 @@ Next I wrote my .html and .css files to contain the viewport which the game woul
 
 {% tabs %}
 {% tab title="index.html" %}
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>

@@ -31,7 +31,7 @@ Setting up a local host with node.js was fairly simple. All that needed to be do
 
 {% tabs %}
 {% tab title="index.html" %}
-```
+```html
 <!DOCTYPE html>
 <html>
     <head>
@@ -48,9 +48,9 @@ Setting up a local host with node.js was fairly simple. All that needed to be do
 {% endtab %}
 
 {% tab title="server.js" %}
-```
+```javascript
 const express = require("express");
-const app = express();
+const app = express();Jav
 
 app.use(express.static("public"));
 
@@ -67,7 +67,7 @@ After setting up this I immediately got to work on the player's camera because t
 
 The global constants define the screen size, which I'm keeping small now but will upscale for the final project, and some useful maths constants to convert degrees to radians and back again. these are needed because the trigonometry functions that my game relies upon use radians while I would prefer to work in degrees.
 
-```
+```javascript
 const SCREEN_WIDTH = 440;
 const SCREEN_HEIGHT = 275;
 const RADTODEG = 180 / 3.1415; // convert radians to deg
@@ -76,7 +76,7 @@ const DEGTORAD = 3.1415 / 180; // and deg to radians
 
 Initialising all the stuff Kaboom needs in order to function: background colour, implementing the screen size, the scale, sprites, the scene and the layers. I also decided to turn gravity off (Kaboom defaults it to on) as although it will be updating it's position on the screen 60 times per second, I still though that having it off would stop any potential visual glitches from occurring.
 
-```
+```javascript
 kaboom({
   background: [10, 10, 10],
   width: SCREEN_WIDTH,
@@ -125,7 +125,7 @@ go("main");
 
 Setting up some more work for future me now. GetBearingFromPlayer() will (surprise surprise) get the bearing of anything from the player using its 3D co-ordinates. GBFP only uses the xy plane and I will use the GetHeightBearing() function for determining vertical angle. And finally I added Pythagoras' theorem for getting the distance between to points or the length of a vector.
 
-```
+```javascript
 function GetBearingFromPlayer(obj){
   //set vector to player
   let _fromPlayer = vec2(obj.position.x - PlayerPos.x, obj.position.y - PlayerPos.y);
@@ -169,7 +169,7 @@ function calcDistance(startingx, startingy, endingx, endingy){
 
 Now for the 'real' work. The tag "obj" will be applied to any thing that needs to be rendered by the 3D camera. onUpdate() will run every frame for every object with a set tag, in this case "obj", and will run code that transforms its angle from the direction the player is looking in and its angle above/below the player to a point on the screen and will turn its distance into its scale so that further objects are smaller.
 
-```
+```javascript
 let PlayerPos = vec2(0, 0);
 let PlayerZ = 0;
 let PlayerRot = 0;
@@ -182,7 +182,7 @@ const PlayerRotSpeed = 9;
 const RenderDist = 0.1;
 ```
 
-```
+```javascript
 onUpdate("obj", (obj) => {
   // get the bearing and turn it into the angle from the view line
   let bearFromPLR = GetBearingFromPlayer(obj);
@@ -206,7 +206,7 @@ onUpdate("obj", (obj) => {
 
 Finally I'm adding movement to control where the camera is and where it is looking. W/A/S/D keeps your hands nicely spread apart which is more comfortable for the player. Kaboom's inbuilt onKeyDown() triggers every frame so long as the key it references is down so it makes sense to use it for movement controls. I also use the function dt(), delta time, which records the time since the last frame, multiplying the change in a value that increases every fame by a consistent amount by delta time will mean it increases in real time, independent of lag spikes.
 
-```
+```javascript
 onKeyDown("a", () => {
  PlayerPos.x += -PlayerSpeed * dt();
 })
@@ -223,7 +223,7 @@ onKeyDown("w", () => {
 
 However, this code has an issue, when the camera is turned the keys will not change their direction so pressing w will no longer make you go forwards. The fix is fairly simple however was we can find take the bearing of the player (known) and turn it into a vector to use for moving along.
 
-```
+```javascript
   onUpdate(() => { // void update is basically just player stuff
     // set the player's look vector to be whatever it is, we only need PlayerRot for this (works in all quadrants wtf??)
     // do be careful tho because the radians are rearing their ugly head again again
@@ -253,7 +253,7 @@ However, this code has an issue, when the camera is turned the keys will not cha
 
 Rotating is super simple, just increase or decrease the PlayerRot variable. Uses q and e to turn or uses the x component in the change in mouse position.
 
-```
+```javascript
   onMouseMove(() => {
     PlayerRot += mouseDeltaPos().x * PlayerRotSpeed; // constant x mouse movement, delta time doesnt need to be useed here because of the nature of the mouse
     if (PlayerRot > 360){ // the code only works assuming that the player's angle is between 0-360 therefore we have 
@@ -279,7 +279,7 @@ Rotating is super simple, just increase or decrease the PlayerRot variable. Uses
 
 ### Challenges
 
-The main issue is that ultimately, this is all unnecessary as using a 3D engine such as Three.Js will be much simpler and provide multiple functions for me. It will also do maths required for true 3D such as quaternions and matrix transformations which I do not know how to do and it allows me to use proper 3D models and import them from blender rather than the 'doom-like' sprites I am using in this solution.
+The main issue is that ultimately, this is all unnecessary as using a 3D engine such as THREE.js will be much simpler and provide multiple functions for me. It will also do maths required for true 3D such as quaternions and matrix transformations which I do not know how to do and it allows me to use proper 3D models and import them from blender rather than the 'doom-like' sprites I am using in this solution.
 
 ## Testing
 
