@@ -1,4 +1,4 @@
-# 2.2.2 Cycle 2 - adding controls
+# 2.2.2 Cycle 2 - Adding controls
 
 ### Design
 
@@ -63,7 +63,7 @@ export function getKey(named key)
 
 I started this cycle with the player. I created it as an object named playerModel and placed it in the scene. I then adjusted the camera so that it was an appropriate distance from the player, allowing the user to see clearly the player model but also to be able to take in lots of the environment and have a wide field of view. I also converted the base scene I made last cycle into a 'floor' to better contextualise the movements of the player without making the map complicated.
 
-```
+```javascript
 const playerModel = {
     geometry: new THREE.BoxGeometry(1, 1, 1),
     material: new THREE.MeshBasicMaterial( 0xff0000 ),
@@ -81,13 +81,13 @@ floor.mesh.scale.set(10, 5, 40);
 scene.add(floor.mesh);
 ```
 
-![](<../.gitbook/assets/image (4) (2).png>)
+![Not exactly the highest end graphics, but everything starts somewhere.](<../.gitbook/assets/image (4) (2).png>)
 
 The controls use a separate file which checks keyboard inputs over the renderer window. That file then exports a function which allows the main file to ask the input file if a particular key is currently being pressed. I then also have to import the file into the main script so that it can use it.
 
 {% tabs %}
 {% tab title="Input.js" %}
-```
+```javascript
 let wDown = false;
 let aDown = false;
 let sDown = false;
@@ -176,7 +176,7 @@ export function getKey(key){
 {% endtab %}
 
 {% tab title="Script.js" %}
-```
+```javascript
 import * as INPUTSYS from "./input.js";
 ```
 {% endtab %}
@@ -186,7 +186,7 @@ import * as INPUTSYS from "./input.js";
 
 Having the game recognise keyboard input is good but only means anything when the input has a perceivable effect on the game instead of just a message in the console. To do this I added checks to the render() loop which would increase or decrease the player's x or z component if their respective key was currently down. I also need to update the position of the camera to follow the player as they move around.
 
-```
+```javascript
 if (INPUTSYS.getKey("w")){
     playerModel.mesh.position.z += moveSpeed;
 }
@@ -214,7 +214,7 @@ Rather hard to see in the video due to the length of the platform but the player
 
 Using the mouse move event listener allows the player to move the camera. To do this I increase / decrease the player model's y rotation (spinning on the spot) based on the x dimension of the vector returned by the "mousemove" event times a constant used to modify the sensitivity. I then move the camera's y position by the y dimension of the "mousemove" vector times the sensitivity constant.&#x20;
 
-```
+```javascript
 import * as MATHS from "./maths.js";
 
 let PlayerFacing = new THREE.Vector3();
@@ -233,7 +233,7 @@ Finally I saved the vector containing the direction that the player is facing ev
 
 {% tabs %}
 {% tab title="Main.js" %}
-```
+```javascript
 playerModel.mesh.getWorldDirection(PlayerFacing);
 PlayerFacing.normalize();
 PlayerRight = MATHS.calcVectorPerpendicular(PlayerFacing);
@@ -263,7 +263,7 @@ camera.lookAt(new THREE.Vector3(playerModel.mesh.position.x, playerModel.mesh.po
 {% endtab %}
 
 {% tab title="Maths.js" %}
-```
+```javascript
 import * as THREE from "./node_modules/three/build/three.module.js";
   
 export function calcVectorPerpendicular(inpVector){
