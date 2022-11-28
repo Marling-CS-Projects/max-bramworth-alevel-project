@@ -171,9 +171,11 @@ I also decided it was time to replace the default model and weapon. I want the f
 
 ![The harpoon's reach will often catch newer players off guard but its lengthy animation time gives the player plenty of time to retaliate.](<../.gitbook/assets/image (10) (1) (1).png>)
 
+
+
 ### Challenges
 
-My first issue was with player detection and I had a minor issue where the ray that was cast at the player wouldn't collide with any walls on the way to but would then pass through the player and collide with a wall, which the game would then say meant that the player was hiding behind that wall, rather than the wall being behind that player. I fixed this by simply adding a check as to if the wall was closer in distance than the player was.
+My first issue was with enemy player detection and I had a minor issue where the ray that was cast by an enemy at the player wouldn't collide with any walls on the way but would then pass through the player and collide with a wall behind them. The game would then say meant that the player was hiding behind that wall, rather than the wall being behind that player. I fixed this by simply adding a check as to if the wall was closer in distance than the player was.
 
 ## Testing
 
