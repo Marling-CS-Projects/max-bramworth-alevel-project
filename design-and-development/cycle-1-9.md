@@ -64,6 +64,8 @@ class respawnPoint extends interactableObject {
 }
 ```
 
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>The player using a banner. Confirmation of saving can be seen in the console and the text can just about be seen.</p></figcaption></figure>
+
 Upon getting injured, the combatant class checks to see if this damage is lethal for the combatant. I added a section where, if it is, it then checks if the combatant is the player and resets the positions of all enemies and their health. It also revives enemies if they have died. It then moves the player to the location of the last respawn point the interacted with.
 
 ```javascript
