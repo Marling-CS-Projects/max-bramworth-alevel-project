@@ -112,7 +112,7 @@ render(){
 
 Finally, to prevent the player from falling through walls, I will add a check to the render loop against every other bounding box and have it push the player on collision. Importantly, moving meshes with collision, namely the player, will need to update their bounding box every frame in order to be accurate. I will do this as the last procedure before checking collision otherwise some actions may not be taken into account by the collision system.
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption><p>The basis of the collision system</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>The basis of the collision system</p></figcaption></figure>
 
 ```
 render(){
