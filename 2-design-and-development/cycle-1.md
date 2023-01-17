@@ -159,7 +159,7 @@ function GetHeightBearing(obj){
   const angle = Math.asin((obj.zpos - PlayerZ) / dist);
   return (angle * RADTODEG);
 }
-function calcDistance(startingx, startingy, endingx, endingy){
+function calcDistance(startingx, startingy, endingx, endingy){ //pythagoras' theorem
   let xdist = startingx - endingx;
   let ydist = startingy - endingy;
   let distsqr = (xdist * xdist) + (ydist * ydist);
@@ -170,7 +170,7 @@ function calcDistance(startingx, startingy, endingx, endingy){
 Now for the 'real' work. The tag "obj" will be applied to any thing that needs to be rendered by the 3D camera. onUpdate() will run every frame for every object with a set tag, in this case "obj", and will run code that transforms its angle from the direction the player is looking in and its angle above/below the player to a point on the screen and will turn its distance into its scale so that further objects are smaller.
 
 ```javascript
-let PlayerPos = vec2(0, 0);
+let PlayerPos = vec2(0, 0); //Initialise player variables
 let PlayerZ = 0;
 let PlayerRot = 0;
 let LookVec = vec2();

@@ -60,16 +60,16 @@ Next I wrote my .html and .css files to contain the viewport which the game woul
 {% tab title="style.css" %}
 ```css
 html, body {
-	overflow: hidden;
+    overflow: hidden;
     user-select: none;
     padding: 0;
     margin: 0;
 }
 
 canvas {
-	width: 100%; 
-	height: 100%;
-	padding: 0;
+    width: 100%; 
+    height: 100%;
+    padding: 0;
     outline:none;
 }
 ```
@@ -87,7 +87,7 @@ I then wrote some sample code for the scene to render, featuring a rotating cube
 ```javascript
 const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(
+const camera = new THREE.PerspectiveCamera( // set camera stats
   60,
   window.innerWidth / window.innerHeight,
   1,
@@ -99,7 +99,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0xaaaaaa, 1);
 document.body.appendChild(renderer.domElement);
 
-function render() {
+function render() { // render loop, all repeating game logic will be called here
   renderer.render(scene, camera);
   requestAnimationFrame(render);
 }
@@ -112,8 +112,8 @@ render();
 In order to fill in the scene, I added a cube. I made it a pleasant shade of turquoise and used a phong material in order for it to be able to be lit by the directional light, which I used the hex code of light from the sun for. To make sure that the camera was rendering at 60fps, I made the cube rotate on the spot.
 
 ```javascript
-const sun = new THREE.DirectionalLight(0xfdfbd3, 0.5);
-sun.position.set(-5, 3, 2);
+const sun = new THREE.DirectionalLight(0xfdfbd3, 0.5); // dir light
+sun.position.set(-5, 3, 2); // move so that it isnt in the cube
 scene.add(sun);
 
 const cube = {
