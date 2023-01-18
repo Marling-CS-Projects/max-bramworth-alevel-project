@@ -99,7 +99,7 @@ loader.load("./moai.glb", function(gltf){
 Alike with the walls, I soon decided to convert the 3D models to becoming instantiable classes so that they would be able easier to work with when making my game world. The values of the hitbox object in this class will be used for the future collision section.
 
 ```javascript
-class THREEDModel {
+class THREEDModel { // class for any 3D model with collision
   constructor(_pos, _rot, _scale, hitboxRadius, hitboxHeight, modelPathway){
     this.modelPathway = modelPathway;
     this._pos = new THREE.Vector3(_pos.x, _pos.y, _pos.z);
@@ -111,7 +111,7 @@ class THREEDModel {
     };
   }
 
-  load(){
+  load(){ // properly load into scene
     const pos = new THREE.Vector3(this._pos.x, this._pos.y, this._pos.z);
     const rot = new THREE.Vector3(this._rot.x, this._rot.y, this._rot.z);
     const scale = new THREE.Vector3(this._scale.x, this._scale.y, this._scale.z);
@@ -132,13 +132,13 @@ class THREEDModel {
 To individually refer to every wall and model will still be far to much to do. Many models and walls will need loading in at the same time and can be grouped together. To contain these objects I will use the structure class which will be the highest level of the classes.
 
 ```javascript
-class structure {
+class structure { // a list of walls and models to be loaded at once
   constructor(_objects, _models){
     this.objects = _objects;
     this.models = _models;
   }
 
-  load(){
+  load(){ // load all walls and models in this structure
     this.objects.forEach(obj => {
       obj.existify();
     })
@@ -164,7 +164,7 @@ Finally, I want to add cylindrical colliders, these are not native to THREE so I
 ```javascript
 render(){
   ...
-  collidableModels.forEach(colidable => {
+  collidableModels.forEach(colidable => { // same as with walls but cylinder colliders
     if (MATHS.distance2D(new THREE.Vector2(playerModel.mesh.position.x,
     playerModel.mesh.position.z), new THREE.Vector2(colidable._pos.x,
     colidable._pos.z)) < colidable.hitbox.radius + 0.5  && 
@@ -200,14 +200,14 @@ render(){
 
 {% tab title="Maths.js" %}
 ```javascript
-export function distance(pointA, pointB){
+export function distance(pointA, pointB){ // Pythagoras
   const A = (pointA.x - pointB.x) * (pointA.x - pointB.x);
   const B = (pointA.y - pointB.y) * (pointA.y - pointB.y);
   const C = (pointA.z - pointB.z) * (pointA.z - pointB.z);
   return Math.sqrt(A + B + C);
 }
 
-export function distance2D(pointA, pointB){
+export function distance2D(pointA, pointB){ // Less expensive, use when one axis is known to be equal
   const A = (pointA.x - pointB.x) * (pointA.x - pointB.x);
   const B = (pointA.y - pointB.y) * (pointA.y - pointB.y);
   return Math.sqrt(A + B);

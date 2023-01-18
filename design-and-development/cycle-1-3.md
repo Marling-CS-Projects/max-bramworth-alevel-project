@@ -59,7 +59,7 @@ Therefore it makes more sense to create a class which I can pass more human-frie
 ```javascript
 let coliables = [];
 
-class wall {
+class wall { // walls are anything static a player can collide with
   constructor(_pos, _rot, _scale, _eje, _isfloor){
     this.cube = {
       geometry: new THREE.BoxGeometry(_scale.x, _scale.y, _scale.z), 
@@ -73,7 +73,7 @@ class wall {
     this.cube.mesh.castShadow = true;
     this.cube.mesh.recieveShadow = true;
   }
-  existify(){
+  existify(){ // add the cube to the scene properly
     scene.add(this.cube.mesh);
 
     this.boundingBox = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
@@ -119,10 +119,10 @@ render(){
   ...
   playerBoundingBox.setFromObject(playerModel.mesh);
   
-  coliables.forEach(colidable => {
+  coliables.forEach(colidable => { // player could collide with any wall, so loop over all
       if (playerBoundingBox.intersectsBox(colidable.boundingBox)){
         if (colidable.isFloor){
-          grounded = true;
+          grounded = true; // allows to player to jump again
         }
         while(playerBoundingBox.intersectsBox(colidable.boundingBox)){
           playerModel.mesh.position.x += colidable.ejectionDirection.x;

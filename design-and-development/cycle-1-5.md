@@ -105,7 +105,7 @@ const second_opening = new structure([
 
 The easiest of the three controls is jumping. Just setting gravity to a positive value and decreasing it back to its original value over time does do the job but doesn't feel very good to control as there is no acceleration. Good feeling jumps in platformers usually have some 'hang time' in them, while my game is not a platformer, it will be useful to use a model that has some in order to make it feel good. My best Idea is trying to make the shape of the jump emulate a Sine graph between 0 - 180. My gravity constant displays the speed that the player is moving up and down so in order to get the speed I will need to differentiate the sine graph, which gives the cosine graph instead. This will be easy to model by having a variable that increases while the player is not grounded.
 
-![](<../.gitbook/assets/jump maths.png>)
+![y=SinX and dy/dx=CosX](<../.gitbook/assets/jump maths.png>)
 
 ```javascript
 render(){
@@ -120,7 +120,7 @@ render(){
       gravity = Math.cos(Math.min(airTime * 3, 3.1416)) * 0.6;
     }
     ...
-    if (grounded){
+    if (grounded){  // reset when contact is made with ground again
       airTime = 0;
       grounded = -0.2;
     } else{
@@ -133,25 +133,25 @@ render(){
 My Idea for how to determine if a left shift should be a roll or a run is simple. When left shift initially goes down, we have no idea of knowing whether the player wants to run or roll, so we will start by assuming the player wants to run. The maximum time left shift can be held and still be a roll will be very short so only the most attentive players will notice the short bit of running anyway. The main script will do this by using a specialised function for left shift only. getLeftShift() will be called every frame and will return one of three out comes: -1, indicating that left shift is being held; 0 indicating that it is not being held and 0<, indicating that it has just been released. updateControls() and clearLSTimer() are both called by the main script when appropriate.
 
 ```javascript
-export function getLeftShift(){
+export function getLeftShift(){ // slightly different becasue time button is held changes action
   if (leftShiftDown){
-    return (-1);
+    return (-1); // flag that lShift is down now
   } else{
     if (leftShiftTimer > 0){
-      return(leftShiftTimer);
+      return(leftShiftTimer); // left shift was let go this frame, return time of hold
     } else{
-      return(0);
+      return(0); // flag that left shift is not down
     }
   }
 }
 
-export function updateControls(){
+export function updateControls(){ // keep the clock ticking
   if (leftShiftDown){
     leftShiftTimer += 1/60;
   }
 }
 
-export function clearLSTimer(){
+export function clearLSTimer(){ // just refresh leftshift timer after roll/run
   leftShiftTimer = 0;
 }
 ```
@@ -184,11 +184,11 @@ This loop serves to change the state of two two variables. Run, which is added t
 ```javascript
 render(){
     ...
-    if (roll > 0){
-      if (roll > 2.5){
+    if (roll > 0){ // If rolling right now
+      if (roll > 2.5){ // if in first half, add speed
         playerModel.mesh.position.z += PlayerFacing.z * rollSpeed;
         playerModel.mesh.position.x += PlayerFacing.x * rollSpeed;
-      } else{
+      } else{ // in second half, return player height
         playerModel.mesh.scale.set(1, 2, 1);
       }
       roll -= 0.1;

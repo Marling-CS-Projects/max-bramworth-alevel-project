@@ -35,7 +35,7 @@ The function casts a ray in the specified direction and then places sphere colli
 {% tabs %}
 {% tab title="Main.js" %}
 ```javascript
-class Combatant {
+class Combatant { // anything that can die, Doom would call these actors
   constructor(model, hp, spd, detec, acuteDetec, attacks, name){
     this.name = name;
     this.model = model;
@@ -50,7 +50,7 @@ class Combatant {
   }
 }
 
-class attack {
+class attack { // anything that can kill
   constructor(windup, duration, total_angle, hitbox_radius, hitbox_points, damage, stun){
     this.windUp = windup;
     this.duration = duration;
@@ -126,7 +126,7 @@ render(){
     ...
 }
 
-document.addEventListener('click', e => {
+document.addEventListener('click', e => { // checks if player has leftclicked (light attack) this frame
   if (playerState == "neutral" || playerState == "walk"){
     console.log("click");
     playerState = "light attack";
@@ -146,7 +146,7 @@ Next I need to add some more functionality to the attack, decrease the hp by a s
 
 ```javascript
 class attack {
-     sweep() {
+     sweep() { //the sweep attack
           ...
           this.hasHit.push(combatant.name);
           console.log(combatant.hp);
@@ -206,7 +206,7 @@ render(){
 }
 
 window.addEventListener("contextmenu", e => {
-  e.preventDefault();
+  e.preventDefault();  // stop rclick menu appearing
   if (playerState == "neutral" || playerState == "walk"){
     console.log("r click");
     playerState = "heavy attack";

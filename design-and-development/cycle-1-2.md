@@ -64,13 +64,13 @@ export function getKey(named key)
 I started this cycle with the player. I created it as an object named playerModel and placed it in the scene. I then adjusted the camera so that it was an appropriate distance from the player, allowing the user to see clearly the player model but also to be able to take in lots of the environment and have a wide field of view. I also converted the base scene I made last cycle into a 'floor' to better contextualise the movements of the player without making the map complicated.
 
 ```javascript
-const playerModel = {
+const playerModel = { // this object stores  al relevant data to create a cube
     geometry: new THREE.BoxGeometry(1, 1, 1),
     material: new THREE.MeshBasicMaterial( 0xff0000 ),
 };
 playerModel.mesh = new THREE.Mesh(playerModel.geometry, playerModel.material);
-playerModel.mesh.scale.set(1, 2, 1);
-scene.add(playerModel.mesh);
+playerModel.mesh.scale.set(1, 2, 1); //use scale instead of geometry to resize
+scene.add(playerModel.mesh); //as it is easier to read
 
 const floor = {
     geometry: new THREE.BoxGeometry(1, 1, 1),
@@ -96,7 +96,7 @@ let leftShiftDown = false;
 let eDown = false;
 let spaceDown = false;
 
-window.addEventListener('keyup', (e) => {
+window.addEventListener('keyup', (e) => { // calls whenever a key goes up
     switch (e.keyCode){
       case 87: // w
         wDown = false;
@@ -121,7 +121,7 @@ window.addEventListener('keyup', (e) => {
         break;
     }
 });
-window.addEventListener('keydown', (e) => {
+window.addEventListener('keydown', (e) => { // calls whenever a key goes down
   switch (e.keyCode){
     case 87: // w
       wDown = true;
@@ -147,7 +147,7 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-export function getKey(key){
+export function getKey(key){ // used by main javascript file to check if a key is pressed
     switch(key){
         case "w":
             return(wDown);
@@ -187,7 +187,7 @@ import * as INPUTSYS from "./input.js";
 Having the game recognise keyboard input is good but only means anything when the input has a perceivable effect on the game instead of just a message in the console. To do this I added checks to the render() loop which would increase or decrease the player's x or z component if their respective key was currently down. I also need to update the position of the camera to follow the player as they move around.
 
 ```javascript
-if (INPUTSYS.getKey("w")){
+if (INPUTSYS.getKey("w")){ // move player as necessary if a key is pressed
     playerModel.mesh.position.z += moveSpeed;
 }
 if (INPUTSYS.getKey("s")){
@@ -200,7 +200,7 @@ if (INPUTSYS.getKey("d")){
     playerModel.mesh.position.x -= moveSpeed;
 }
 
-camera.position.set(
+camera.position.set( // move camera to follow behind player
     playerModel.mesh.position.x, 
     playerModel.mesh.position.y + 1,
     playerModel.mesh.position.z - 5
@@ -217,8 +217,8 @@ Using the mouse move event listener allows the player to move the camera. To do 
 ```javascript
 import * as MATHS from "./maths.js";
 
-let PlayerFacing = new THREE.Vector3();
-let PlayerRight = new THREE.Vector3();
+let PlayerFacing = new THREE.Vector3(); // the real time direction of the player
+let PlayerRight = new THREE.Vector3(); // use these to determine move direction
 
 document.addEventListener("mousemove", e => {
   e.preventDefault();
@@ -266,7 +266,7 @@ camera.lookAt(new THREE.Vector3(playerModel.mesh.position.x, playerModel.mesh.po
 ```javascript
 import * as THREE from "./node_modules/three/build/three.module.js";
   
-export function calcVectorPerpendicular(inpVector){
+export function calcVectorPerpendicular(inpVector){ // returns vector on xy plane perpendicular to inpVector
   const vect = new THREE.Vector3(inpVector.z, inpVector.y, -inpVector.x);
   return (vect);
 }
