@@ -35,7 +35,7 @@ class interactableObject{ // exists only to be inherited
     this.canBeInterracted;
   }
 
-  checkInRange(){
+  checkInRange(){  //called to check if pressing e will do anything
     if (MATHS.distance(this.model._pos, playerModel.mesh.position) < this.range){
       this.canBeInterracted = true;
     } else{
@@ -44,7 +44,7 @@ class interactableObject{ // exists only to be inherited
   }
 }
 
-class respawnPoint extends interactableObject {
+class respawnPoint extends interactableObject { // an object that updates the player's respawn point
   constructor(_model, _range, _encounters, resPoint){
     super(_model, _range);
     this.playerSpawningAt = false;
@@ -99,7 +99,7 @@ To make the player's death immediately clear, I will have it display on the scre
 {% tabs %}
 {% tab title="Script.js" %}
 ```javascript
-const titleText = document.createElement("h1");
+const titleText = document.createElement("h1"); // text that will be used for titles
 titleText.textContent = "";
 document.body.appendChild(titleText);
 const TitleTextManager = {

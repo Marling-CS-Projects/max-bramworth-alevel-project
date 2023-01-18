@@ -33,7 +33,7 @@ class lever extends interractableObject {
     Levers.push(this);
   }
 
-  pull(){
+  pull(){ // disables a wall
     this.checkInRange();
     if (this.canBeInterracted && !this.activated){
       leversPulled++;
@@ -51,7 +51,7 @@ class lever extends interractableObject {
 
 ...
 
-function OpenGate(gate){
+function OpenGate(gate){ // called by lever for function
   if (gate == "birm"){
     Fallen_Capitalentrance.objects[13].cube.mesh.position.y = -500;
     Fallen_Capitalentrance.objects[13].boundingBox.setFromObject(Fallen_Capitalentrance.objects[13].cube.mesh);
@@ -75,7 +75,7 @@ I created a world map for the player to explore. I created three separate areas 
 
 <summary>The world code (long)</summary>
 
-```
+```javascript
 const starting_island_Greymarsh = new structure([
   new wall(new THREE.Vector3(-5, -1, 10), new THREE.Vector3(0, 0, 0), new THREE.Vector3(30, 1, 35), new THREE.Vector3(0, 0.01, 0), true, "./grassig.png"), //floor
   new wall(new THREE.Vector3(-5, 2, 10), new THREE.Vector3(0, 0, 0), new THREE.Vector3(30, 1, 35), new THREE.Vector3(0, 0.01, 0), false, "./grassig.png", "Greymarsh"), //area trigger
