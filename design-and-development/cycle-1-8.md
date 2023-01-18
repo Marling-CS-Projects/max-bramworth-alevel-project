@@ -79,7 +79,7 @@ I decided to start work on the AI and the enemy pathing at the same time because
 ```javascript
 ...
 
-const meleeSimple = {
+const meleeSimple = { // AI that runs at player when in view
   onUpdate: function(self){
     self.update();
   },
@@ -113,7 +113,7 @@ I then made the enemy simply move along the vector towards the player. Some enem
 ```javascript
 class Combatant{
     ...
-    move(direction){
+    move(direction){ // called every frame while player is in view to move model
     if(this.state == "neutral" || this.state == "walking"){
       this.state = "walking";
       direction.y = 0;
@@ -133,7 +133,7 @@ We set the y component of the move vector to 0 so the enemy cannot fly to reach 
 As I already had some work on the AIs done, I decided to next move on to teaching the AI to be able to attack the player. This would all be different for every AI but for the meleeSimple, all it needs to do is perform it's attack when it gets close enough in the direction of the player.
 
 ```javascript
-const meleeSimpleStabber = {
+const meleeSimpleStabber = { // AI that runs at player when in view
   onUpdate: function(self){
     self.update();
     if (self.state == "attacking" && self.attackCD <= 0){
@@ -170,8 +170,6 @@ I also decided it was time to replace the default model and weapon. I want the f
 ![A clothed version of the default human model with some decay added to sell the undead feel.](<../.gitbook/assets/image (1) (3).png>)
 
 ![The harpoon's reach will often catch newer players off guard but its lengthy animation time gives the player plenty of time to retaliate.](<../.gitbook/assets/image (10) (1) (1).png>)
-
-
 
 ### Challenges
 

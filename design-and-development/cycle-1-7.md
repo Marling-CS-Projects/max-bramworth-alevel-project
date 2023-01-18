@@ -29,7 +29,7 @@ In order to give the player more choices in combat, I am now adding the 'stab' m
 ```javascript
 class attack{
     ...
-    attack(a, b, c){
+    attack(a, b, c){ // just call this function and it will figure out everything else for you
       switch (this.type){
         case "sweep":
           this.sweep(a, b);
@@ -43,7 +43,7 @@ class attack{
       }
     }
     ...
-    stab(user, progression, offset){
+    stab(user, progression, offset){ // an attack where the hitbox moves forwards only
       let startVector = new THREE.Vector3(); // create vector
       user.getWorldDirection(startVector); // set it to new direction
       const yAngle = user.rotation.y;
@@ -63,7 +63,7 @@ While doing this I also decided that the checking collision would be its own sep
 ```javascript
 class attack{
   ...
-  checkCollision(){
+  checkCollision(){ // check if an attack has hit anything this frame
     combatants.forEach(combatant => {
       this._Points.forEach(_point => {
         if (MATHS.distance(_point, combatant.model._pos) < this.hitboxDRadius && !MATHS.arrayContains(this.hasHit, combatant.name)){
@@ -86,12 +86,12 @@ The problem with attacks so far is that the player has no visual indicator for w
 ```javascript
 class attack {
   ...
-  showWeapon(direction){
+  showWeapon(direction){ // proceadurly generate the position of the weapon
     this.model.position.set(this._Points[0].x, this._Points[0].y, this._Points[0].z);
     this.model.rotation.set(0, direction, 0);
   }
 
-  prepareWeapon(a, b, user){
+  prepareWeapon(a, b, user){ // call this for wind up and class will determine which anim to do
     switch (this.type){
       case "sweep":
         this.unsheath(a, b, user);
@@ -103,7 +103,7 @@ class attack {
     }
   }
 
-  unsheath(percentAnim, offset, user){
+  unsheath(percentAnim, offset, user){ // weapon slowly rises
     this.model.position.set(user.mesh.position.x - (0.75 * offset.x), user.mesh.position.y - 0.35 + (percentAnim * 0.35), user.mesh.position.z - (offset.z * 0.75));
     this.model.rotation.set(user.mesh.rotation.x, user.mesh.rotation.y, user.mesh.rotation.z);
   }
@@ -154,7 +154,7 @@ class THREEDModel {
   }
 }
 
-function bounceBackGLTFScene(scene, recipient){
+function bounceBackGLTFScene(scene, recipient){ // hold onto the model scene until it's ready
   console.log("bouncing " + recipient.toString());
   collidableModels[recipient].set_Model(scene);
 }
