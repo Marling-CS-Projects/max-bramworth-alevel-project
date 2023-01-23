@@ -36,10 +36,10 @@ Firstly, I will be making the player detection. Player detection will use a rayc
 ```javascript
 class Combatant {
   ...
-  canSpotPlayer(playerPos, origin){
+  canSpotPlayer(playerPos, origin){ // run every frame to determine if player can be detected
     this.alerted = true;
     const playerdist = MATHS.distance(origin, playerPos);
-    if (playerdist > this.detectionDistance){
+    if (playerdist > this.detectionDistance){ // too far away is easier to compute
       this.alerted = false;
       console.log("could not see player (too far away!)");
     } else{
