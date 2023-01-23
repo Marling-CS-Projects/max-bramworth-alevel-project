@@ -53,7 +53,7 @@ class respawnPoint extends interactableObject { // an object that updates the pl
     respawnPoints.push(this);
   }
 
-  save(){
+  save(){ // does all of the logic needed when the player presses e near a banner
     this.checkInRange();
     if (this.canBeInterracted){
       respawnStandard = this;
