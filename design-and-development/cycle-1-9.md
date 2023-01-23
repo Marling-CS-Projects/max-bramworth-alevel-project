@@ -108,7 +108,7 @@ const TitleTextManager = {
     titleText.textContent = text;
     this.durationLeft = duration;
   },
-  update: function(){
+  update: function(){ // 
     if(this.durationLeft > 0){
       this.durationLeft -= FRAMETIME;
     } else{
