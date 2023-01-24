@@ -61,7 +61,7 @@ class Combatant {
 
 function render(){
   ...
-  combatants.forEach(combatant => {
+  combatants.forEach(combatant => { // loop over every enemy and run its detection
     if (combatant.name != "player"){ // the player isn't an AI (probably) so don't control them
       combatant.canSpotPlayer(combatant.model._pos, playerModel.mesh.position);
     }
