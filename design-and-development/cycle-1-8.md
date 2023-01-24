@@ -79,11 +79,11 @@ I decided to start work on the AI and the enemy pathing at the same time because
 ```javascript
 ...
 
-const meleeSimple = { // AI that runs at player when in view
-  onUpdate: function(self){
+const meleeSimple = { // AI that runs at player when in view, uses its attack when in range
+  onUpdate: function(self){ // code that runs every frame
     self.update();
   },
-  whileAlerted: function(self){
+  whileAlerted: function(self){ // code that runs whenever the player is spotted
     console.log("can see!");
     self.move(new THREE.Vector3(playerModel.mesh.position.x - self.model._pos.x, playerModel.mesh.position.y - self.model._pos.y, playerModel.mesh.position.z - self.model._pos.z));
   }
@@ -114,7 +114,7 @@ I then made the enemy simply move along the vector towards the player. Some enem
 class Combatant{
     ...
     move(direction){ // called every frame while player is in view to move model
-    if(this.state == "neutral" || this.state == "walking"){
+    if(this.state == "neutral" || this.state == "walking"){ // attacking enemies a frozen
       this.state = "walking";
       direction.y = 0;
       direction.normalize();
@@ -128,7 +128,7 @@ class Combatant{
 
 We set the y component of the move vector to 0 so the enemy cannot fly to reach the player.
 
-![The enemy now moves to whenever the player gets too close](<../.gitbook/assets/image (3) (3).png>)
+![The enemy now moves whenever the player gets too close](<../.gitbook/assets/image (3) (3).png>)
 
 As I already had some work on the AIs done, I decided to next move on to teaching the AI to be able to attack the player. This would all be different for every AI but for the meleeSimple, all it needs to do is perform it's attack when it gets close enough in the direction of the player.
 
